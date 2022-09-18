@@ -1,5 +1,6 @@
 import { PropsWithChildren } from "react";
 import { Navigate, useLocation } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 
 /**
@@ -11,11 +12,10 @@ import { Navigate, useLocation } from "react-router-dom";
  */
 function PrivateRoute(props: PropsWithChildren) {
   const { children } = props;
-  const token = true; // TODO : create service for login and token auth
+  const token = useAuth(); // TODO : create service for login and token auth
   const location = useLocation();
 
   if(!token){
-    console.log('navigate')
     return <Navigate to="/login" state={{from : location}} />
   }
 
