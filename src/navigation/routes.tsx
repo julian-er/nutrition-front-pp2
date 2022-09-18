@@ -1,4 +1,5 @@
-import Login from "../pages/Login/indext";
+import Login from "../pages/Login";
+import Nutritionist from "../pages/Nutritionist";
 
 export interface IRoute {
   url: string;
@@ -33,10 +34,10 @@ export const routes = Object.freeze<IRoute[]>([
     label: "Nutritionists",
     showNavigation: true,
     isPublic: false,
-    element: <div><p>NUTRITIONIST</p></div>,
+    element: <Nutritionist />,
   },
   {
-    url: "nutritionists/:nutricionistsId",
+    url: "nutritionists/:nutritionistsId",
     isPublic: false,
     element: <div><p>NUTRITIONIST ID</p></div>,
   },
