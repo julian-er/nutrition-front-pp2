@@ -52,4 +52,9 @@ export const routes = Object.freeze<IRoute[]>([
     isPublic: false,
     element: <div><p>PATIENTS ID</p></div>,
   },
+  {
+    url: "/404",
+    isPublic: false,
+    element: <div><p>Error 404</p></div>,
+  },
 ]);
