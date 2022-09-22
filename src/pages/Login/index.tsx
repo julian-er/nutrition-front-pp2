@@ -5,22 +5,31 @@ import { logoApp } from '../../shared/icons';
 import styles from './Login.module.scss';
 
 function Login() {
-  const [form, setForm] = useState() as any;
+  const [form, setForm] = useState({
+    user_name: '',
+    password: ''
+  }) as any;
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e: React.MouseEvent) => {
+    setLoading(true);
     e.preventDefault();
-    try {
-      const response = await AuthService.login(form);
-
-      if (response.success) {
-        navigate('/dashboard');
-      } else {
-        console.error(response.message);
+    setTimeout(async () => {
+      try {
+        const response = await AuthService.login(form);
+        if (response.success) {
+          navigate('/dashboard');
+        } else {
+          setLoading(false);
+          console.error(response.message);
+        }
+      } catch (error) {
+        console.log('error en catch');
+        setLoading(false);
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
-    }
+    }, 2000);
   };
 
   const handleSetForm = (e: any) => {
@@ -32,9 +41,10 @@ function Login() {
   };
 
   return (
-    <div className={styles.login_wrapper}>
+    <div className={`${styles.login_wrapper} ${loading ? styles.login_loading : ''}`}>
       <form className={styles.login_form}>
-        {logoApp}
+        <div className={styles.login_logo}>{logoApp} <span> logging in ...</span></div>
+        
         <div className={styles.login_input_wrapper}>
           <input className={styles.login_input} id="id" type={'text'} placeholder="username" name="user_name" onChange={handleSetForm} value={form?.user_name} />
           <Link to="#" className={styles.login_forgot}>
