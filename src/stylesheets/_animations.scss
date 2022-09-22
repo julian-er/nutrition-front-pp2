@@ -1,0 +1,53 @@
+@keyframes disappear_bottom {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes appear_bottom {
+  from {
+    transform: translateY(100vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes translate_from_0_to_70 {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(70%);
+  }
+}
+
+@keyframes translate_from_70_to_0 {
+  from {
+    transform: translateY(70%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0) scale(2);
+  }
+  to {
+    transform: rotate(360deg) scale(2);
+  }
+}
+
+@keyframes fade_in {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
