@@ -75,6 +75,9 @@ section {
     width: 70%;
     margin: 30px;
     text-align: center;
+    >p{
+        color:var(--red-color)
+    }
 }
 
 .login_input {
@@ -113,7 +116,10 @@ fieldset {
         color: #ffffff;
         text-align: left;
     }
+
 }
+
+
 
 .login_btn_login {
     cursor: pointer;
