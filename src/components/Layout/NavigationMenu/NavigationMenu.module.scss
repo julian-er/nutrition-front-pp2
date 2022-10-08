@@ -1,0 +1,125 @@
+$navWidth: 230px;
+.asideMenu {
+  background-color: var(--grey-asideMenu-color);
+  position: fixed;
+  height: 100%;
+  left: 0;
+  top: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .navigationPages {
+    height: 60%;
+    width: $navWidth;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-left: 0%;
+    padding-top: 15%;
+
+    .navigationItem {
+      list-style: none;
+
+      .link {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-decoration: none;
+        padding: 5%;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+
+        svg {
+          width: 30px;
+          height: 30px;
+
+          path,
+          circle {
+            fill: white;
+          }
+        }
+
+        span {
+          color: white;
+          padding-left: 12px;
+        }
+
+        &:hover {
+          background-color: #7fcec680;
+        }
+
+        &:focus {
+          outline: 1px solid var(--green-color);
+          border-radius: 3px;
+        }
+      }
+    }
+  }
+
+  .userConfig {
+    padding-left: 0%;
+    .navigationItem {
+      list-style: none;
+      .link {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        text-decoration: none;
+        padding: 5%;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+
+        svg {
+          width: 30px;
+          height: 30px;
+
+          path,
+          circle {
+            fill: white;
+          }
+        }
+
+        span {
+          color: white;
+          padding-left: 12px;
+        }
+
+        &:hover {
+          background-color: #7fcec680;
+        }
+
+        &:focus {
+          outline: 1px solid var(--green-color);
+          border-radius: 3px;
+        }
+      }
+    }
+    .closeArrowButton {
+      background: none;
+      border: none;
+
+      &:focus {
+        outline: 1px solid var(--green-color);
+        border-radius: 3px;
+      }
+    }
+
+    .closeMenu {
+      svg {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 8%;
+
+        fill: var(--green-color);
+      }
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 10%;
+    }
+  }
+}
