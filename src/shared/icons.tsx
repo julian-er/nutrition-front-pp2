@@ -20,7 +20,7 @@ export const logoApp = (
 
 // Home icon
 
-export const homeIcon = (
+export const dashboardIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
@@ -187,7 +187,7 @@ export const pathologiesIcon = (
 
 // Professional icon
 
-export const professionalIcon = (
+export const profileIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
@@ -297,16 +297,16 @@ export const arrowIcon = (
     xmlns="http://www.w3.org/2000/svg"
     xmlSpace="preserve"
     width={160}
-    height={160}
+    height={259.028}
     shapeRendering="geometricPrecision"
     textRendering="geometricPrecision"
     imageRendering="optimizeQuality"
     fillRule="evenodd"
     clipRule="evenodd"
-    viewBox="0 0 42322.8 42322.8">
+    viewBox="0 0 42318.6 68510.6">
     <path
       className="fil0"
-      d="M21161.5 0c11687 0 21161.4 9474.4 21161.4 21161.4 0 11687-9474.4 21161.5-21161.4 21161.5C9474.5 42322.9 0 32848.4 0 21161.4S9474.5 0 21161.5 0zM15548 18457.3h17762.8c3577.2 0 3577.2 5408.1 0 5408.1H15548l4074 4074.1c2530.1 2530-1294.1 6354-3824.1 3824.1l-8680.1-8680.1c-1049.5-1049.5-1053.4-2790.6 0-3844l8680.1-8680.1c2530-2530 6354.1 1294.2 3824.1 3824.2l-4074 4074z"
+      d="m19521.4 34255.3 20309.1 20309.1C47411 62145 35952.9 73603.2 28372.3 66022.6L2363.9 40014.3c-3151.6-3151.7-3151.6-8366.3 0-11518L28372.3 2488C35952.8-5092.6 47411 6365.5 39830.5 13946.2L19521.4 34255.3z"
     />
   </svg>
 );

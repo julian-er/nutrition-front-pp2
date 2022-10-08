@@ -1,69 +1,182 @@
-import Dashboard from "../pages/Dashboard";
-import Login from "../pages/Login";
-import Nutritionist from "../pages/Nutritionist";
+import Dashboard from '../pages/Dashboard';
+import Login from '../pages/Login';
+import Profile from '../pages/Profile';
+import Nutritionist from '../pages/Profile';
+import { dashboardIcon, newFoodIcon, notesIcon, pathologiesIcon, patientsIcon, planIcon, profileIcon } from '../shared/icons';
 
 export interface IRoute {
   url: string;
   label?: string;
-  icon?: string;
+  icon?: JSX.Element;
   isPublic?: boolean;
-  showNavigation? : boolean;
+  showNavigation?: boolean;
   element: JSX.Element;
 }
 
 /**
-*  Routes file 
-*  @param url string;
-*  @param label string; -> Optional
-*  @param icon string; -> Optional
-*  @param isPublic boolean;
-*  @param showNavigation : boolean; -> Optional
-*  @param element JSX.Element; -> Page to rendering 
-*  @return Array of routes
-*  
-* Label param is optional because we use it only for display the name in a navigation component like Sidebar or Menu, when the showNavigation options it's setting on true we proceed to display in these components
-*/
+ *  Routes file
+ *  @param url string;
+ *  @param label string; -> Optional
+ *  @param icon JSX.Element; -> SVG Optional
+ *  @param isPublic boolean;
+ *  @param showNavigation : boolean; -> Optional
+ *  @param element JSX.Element; -> Page to rendering
+ *  @return Array of routes
+ *
+ * Label param is optional because we use it only for display the name in a navigation component like Sidebar or Menu, when the showNavigation options it's setting on true we proceed to display in these components
+ */
 export const routes = Object.freeze<IRoute[]>([
   {
-    url: "login",
-    label: "Log In",
+    url: 'login',
+    label: 'Log In',
     isPublic: true,
-    element: <Login />,
+    element: <Login />
   },
+
   {
-    url: "/nutritionists",
-    label: "Nutritionists",
-    showNavigation: true,
-    isPublic: false,
-    element: <Nutritionist />,
-  },
-  {
-    url: "nutritionists/:nutritionistsId",
-    isPublic: false,
-    element: <div><p>NUTRITIONIST ID</p></div>,
-  },
-  {
-    url: "patients",
-    label: "Patients",
+    url: '/dashboard',
+    label: 'Dashboard',
+    icon: dashboardIcon,
     isPublic: false,
     showNavigation: true,
-    element: <div><p>PATIENTS</p></div>,
+    element: <Dashboard />
   },
   {
-    url: "patients/:patientsId",
+    url: '/404',
     isPublic: false,
-    element: <div><p>PATIENTS ID</p></div>,
+    element: (
+      <div>
+        <p>Error 404</p>
+      </div>
+    )
+  },
+
+  {
+    url: '/notes',
+    label: 'Notes',
+    icon: notesIcon,
+    showNavigation: true,
+    isPublic: false,
+    element: (
+      <div>
+        <p>NOTES</p>
+      </div>
+    )
   },
   {
-    url: "/dashboard",
-    label: "Dashboard",
+    url: '/notes/:notesId',
+    isPublic: false,
+    element: (
+      <div>
+        <p>NOTES</p>
+      </div>
+    )
+  },
+
+  {
+    url: '/new_food',
+    label: 'New Food',
+    icon: newFoodIcon,
+    showNavigation: true,
+    isPublic: false,
+    element: (
+      <div>
+        <p>NEW FOOD</p>
+      </div>
+    )
+  },
+  {
+    url: '/new_food/:new_foodId',
+    isPublic: false,
+    element: (
+      <div>
+        <p>NEW FOOD</p>
+      </div>
+    )
+  },
+  {
+    url: '/plan',
+    label: 'Plan',
+    icon: planIcon,
+    showNavigation: true,
+    isPublic: false,
+    element: (
+      <div>
+        <p>PLAN</p>
+      </div>
+    )
+  },
+  {
+    url: '/plan/:planId',
+    isPublic: false,
+    element: (
+      <div>
+        <p>PLAN</p>
+      </div>
+    )
+  },
+  {
+    url: '/patients',
+    label: 'Patients',
+    icon: patientsIcon,
     isPublic: false,
     showNavigation: true,
-    element: <Dashboard />,
+    element: (
+      <div>
+        <p>PATIENTS</p>
+      </div>
+    )
   },
   {
-    url: "/404",
+    url: '/patients/:patientsId',
     isPublic: false,
-    element: <div><p>Error 404</p></div>,
+    element: (
+      <div>
+        <p>PATIENTS ID</p>
+      </div>
+    )
   },
+  {
+    url: '/pathologies',
+    label: 'Pathologies',
+    icon: pathologiesIcon,
+    isPublic: false,
+    showNavigation: true,
+    element: (
+      <div>
+        <p>PATHOLOGIES</p>
+      </div>
+    )
+  },
+  {
+    url: '/pathologies/:pathologiesId',
+    isPublic: false,
+    element: (
+      <div>
+        <p>PATHOLOGIES</p>
+      </div>
+    )
+  },
+
+  {
+    url: '/profile',
+    label: 'Profile',
+    icon: profileIcon,
+    showNavigation: false,
+    isPublic: false,
+    element: (
+      <div>
+        <p>PROFILES</p>
+      </div>
+    ) // esto debería llamarse nutritionists o professional como en el dashboard???
+  },
+  {
+    url: '/profile/:profileId',
+    isPublic: false,
+    element: (
+      <div>
+        <p>PROFILE ID</p>
+      </div>
+    )
+  }
 ]);
