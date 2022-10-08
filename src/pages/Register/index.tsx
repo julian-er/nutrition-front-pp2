@@ -1,35 +1,42 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import AuthService from '../../services/authServices/authService';
+import RegisterService, { IRegisterRequest } from '../../services/registerServices/registerService';
 import { professionalIcon } from '../../shared/icons';
 import styles from './Register.module.scss';
 
 function Register() {
-    const [form, setForm] = useState({
-        name: "",
-        last_name: "",
-        user_photo: "",
-        email: "",
-        phone_number: "",
+    const [confirm_pass, setConfirmPass] = useState(false)
+    const [form, setForm] = useState<IRegisterRequest>({
         user_name: "",
-        birth_date: "",
         password: '',
-        confirm_pass: ""
-    }) as any;
+        email: "",
+        first_name: "",
+        last_name: "",
+        phone_number: "",
+        birth_date: "",
+        profile_image: null,
+        isNutritionist:true,
+        isPatient:false
+    });
+
     const [loading, setLoading] = useState<boolean>(false);
     const navigate = useNavigate();
 
-    const handleLogin = async (e: React.MouseEvent) => {
+    const handleRegister = async (e: React.MouseEvent) => {
         setLoading(true);
         e.preventDefault();
         setTimeout(async () => {
             try {
-                const response = await AuthService.login(form);
-                if (response.success) {
-                    navigate('/dashboard');
-                } else {
-                    setLoading(false);
-                    console.error(response.message);
+                if(confirm_pass && form.user_name.length && form.first_name.length && form.last_name.length && form.email.length){
+                    const response = await RegisterService.register(form);
+                    if (response.success) {
+                        navigate('/login');
+                    } else {
+                        setLoading(false);
+                        console.error(response.message);
+                    }
+                }else{
+                    alert("formulario incompleto")
                 }
             } catch (error) {
                 console.log('error en catch');
@@ -39,39 +46,32 @@ function Register() {
         }, 2000);
     };
 
+    const handleBack= (e: React.MouseEvent)=>{
+        navigate("/login")
+    }
+
     const getBase64 = (file: Blob) => {
         return new Promise(resolve => {
             let fileInfo;
             let baseURL: any = "";
-            // Make new FileReader
             let reader = new FileReader();
-
             // Convert the file to base64 text
             reader.readAsDataURL(file);
-
-            // on reader load somthing...
             reader.onload = () => {
-                // Make a fileInfo Object
-                console.log("Called", reader);
                 baseURL = reader.result;
-                console.log(baseURL);
                 resolve(baseURL);
             };
-            console.log(fileInfo);
         });
     };
 
     const handleFileInputChange = (e: any) => {
-        console.log(e.target.files[0]);
         let file = e.target.files[0];
         getBase64(file)
-            .then(result => {
+            .then((result : any) => {
                 file["base64"] = result;
-                console.log("File Is", file);
                 setForm({
                     ...form,
-                    user_photo: result,
-                    file
+                    profile_image: result
                 });
             })
             .catch(err => {
@@ -80,9 +80,15 @@ function Register() {
 
     };
 
+    const handleValidatePassword = (e : any) =>{
+        const passwordConfirm=e.target.value
+        console.log(passwordConfirm)
+        passwordConfirm == form.password? setConfirmPass(true): setConfirmPass(false)
+    }
 
     const handleSetForm = (e: any) => {
         const { name, value } = e.target;
+        console.log(confirm_pass)
         setForm({
             ...form,
             [name]: value
@@ -93,9 +99,9 @@ function Register() {
         <div className={`${styles.login_wrapper} ${loading ? styles.login_loading : ''}`}>
             <form className={styles.login_form}>
                     <div className={styles.login_logo}>
-                        {form.user_photo !== "" ?
+                        {form.profile_image !== null ?
                             <div className={styles.image_container}>
-                                <img className={styles.user_photo} src={form.user_photo} alt="user photo" />
+                                <img className={styles.user_photo} src={form.profile_image} alt="user photo" />
                             </div>
                             : <>
                                 {professionalIcon}
@@ -106,7 +112,7 @@ function Register() {
                 <h2> Register </h2>
                 <fieldset>
                     <div className={styles.login_input_wrapper}>
-                        <input className={styles.login_input} id="id" type={'text'} placeholder="name" name="name" onChange={handleSetForm} value={form?.name} />
+                        <input className={styles.login_input} id="id" type={'text'} placeholder="name" name="first_name" onChange={handleSetForm} value={form?.first_name} />
                     </div>
                     <div className={styles.login_input_wrapper}>
                         <input className={styles.login_input} id="id" type={'text'} placeholder="last name" name="last_name" onChange={handleSetForm} value={form?.last_name} />
@@ -133,14 +139,14 @@ function Register() {
                         <input className={styles.login_input} type={'password'} placeholder="password" name="password" onChange={handleSetForm} value={form?.password} />
                     </div>
                     <div className={styles.login_input_wrapper}>
-                        <input className={styles.login_input} id="id" type={'text'} placeholder="confirm you password" name="confirm_pass" onChange={handleSetForm} value={form?.confirm_pass} />
+                        <input className={styles.login_input} id="id" type={'password'} placeholder="confirm you password" name="confirm_pass" onChange={handleValidatePassword}/>
                     </div>
                 </fieldset>
                 <section>
-                    <button className={styles.login_btn_login} onClick={handleLogin}>
+                    <button className={styles.login_btn_login} onClick={handleBack}>
                         Back
                     </button>
-                    <button className={`${styles.login_btn_login}  ${styles.login_btn_register}`} onClick={handleLogin}>
+                    <button className={`${styles.login_btn_login}  ${styles.login_btn_register}`} onClick={handleRegister}>
                         Register
                     </button>
                 </section>

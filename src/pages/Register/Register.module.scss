@@ -170,35 +170,7 @@ fieldset {
 
 // Loading login animations
 
-.login_wrapper {
-    &.login_loading {
-        .login_form {
 
-            .login_input_wrapper,
-            .login_btn_login,
-            .login_btn_register {
-                animation: disappear_bottom 500ms ease-in-out;
-                animation-fill-mode: forwards;
-            }
-
-            .login_logo {
-                animation: translate_from_0_to_70 500ms ease-in-out;
-                animation-fill-mode: forwards;
-
-                >svg {
-                    transform-origin: 50% 50%;
-                    animation: rotation 2s linear infinite;
-                }
-
-                >span {
-                    display: block;
-                    opacity: 0;
-                    animation: fade_in 500ms ease-in-out forwards;
-                }
-            }
-        }
-    }
-}
 
 // Media queries
 @media ($tablet) {
