@@ -170,7 +170,7 @@ function Register() {
                     </button>
                 </section>
             </form>
-            {showModal ? <Modal title='tu titulo' paragraph='algo para el cuerpo' buttons={buttons} /> : []}
+            {showModal ? <Modal title='Confirmar Registro' paragraph='algo para el cuerpo' buttons={buttons} /> : []}
         </div>
     );
 }
