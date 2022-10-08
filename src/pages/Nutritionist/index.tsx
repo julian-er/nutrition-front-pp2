@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Layout from '../../components/Layout';
 
 function Nutritionist() {
   return (
-    <div>Nutritionist</div>
-  )
+    <Layout>
+      <div>Nutritionist</div>
+    </Layout>
+  );
 }
 
-export default Nutritionist
+export default Nutritionist;

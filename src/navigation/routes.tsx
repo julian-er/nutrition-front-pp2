@@ -1,3 +1,4 @@
+import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Nutritionist from "../pages/Nutritionist";
 
@@ -30,7 +31,7 @@ export const routes = Object.freeze<IRoute[]>([
     element: <Login />,
   },
   {
-    url: "nutritionists",
+    url: "/nutritionists",
     label: "Nutritionists",
     showNavigation: true,
     isPublic: false,
@@ -45,12 +46,20 @@ export const routes = Object.freeze<IRoute[]>([
     url: "patients",
     label: "Patients",
     isPublic: false,
+    showNavigation: true,
     element: <div><p>PATIENTS</p></div>,
   },
   {
     url: "patients/:patientsId",
     isPublic: false,
     element: <div><p>PATIENTS ID</p></div>,
+  },
+  {
+    url: "/dashboard",
+    label: "Dashboard",
+    isPublic: false,
+    showNavigation: true,
+    element: <Dashboard />,
   },
   {
     url: "/404",
