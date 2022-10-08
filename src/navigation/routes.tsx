@@ -1,6 +1,7 @@
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Nutritionist from "../pages/Nutritionist";
+import Register from  "../pages/Register";
 
 export interface IRoute {
   url: string;
@@ -66,4 +67,11 @@ export const routes = Object.freeze<IRoute[]>([
     isPublic: false,
     element: <div><p>Error 404</p></div>,
   },
+  {
+    url: "register",
+    label: "Register",
+    isPublic: true,
+    element: <Register />,
+  },
+
 ]);
