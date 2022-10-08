@@ -5,52 +5,61 @@
     width: 100vw;
     height: 100vh;
     background: linear-gradient(120deg, rgba(62, 63, 65, 1) 0%, rgba(83, 84, 86, 1) 40%, rgba(128, 129, 130, 1) 70%, rgba(215, 216, 216, 1) 100%);
-
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.login_logo {
+  .login_logo {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
-    >svg {
-        width: 25%;
-
-        path,
-        polygon {
-            fill: #8ad2d5;
-        }
-
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 20px;
+      >svg {
+          width: 25%;
+          path,
+          polygon {
+              fill: #8ad2d5;
+            }
         transition: scale 500ms ease-in-out;
     }
-
-    >span {
-        display: none;
-        text-transform: uppercase;
-        color: #ffffff;
-    }
-    margin-bottom: 50px;
 }
+
+.image_container{
+    border-radius: 50%;
+}
+
 
 .login_form {
     width: 80%;
     height: 80%;
-    overflow: hidden;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
     align-items: center;
 }
 
-fieldset {
-    display: flex; 
-    width:  40%;
-    justify-self: center;
+.user_photo{
+    height: 200px;
+    width: 200px;
+    z-index: 1;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.file_input{
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    opacity: 0;
+    z-index: 1;
 }
 
 section {
@@ -63,9 +72,9 @@ section {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
     width: 70%;
     margin: 30px;
+    text-align: center;
 }
 
 .login_input {
@@ -74,7 +83,7 @@ section {
     color: #ffffff;
     background: none;
     transition: border-color 250ms ease-in-out;
-
+    width: 100%;
     &::placeholder {
         text-transform: uppercase;
         color: #ffffff;
@@ -83,6 +92,26 @@ section {
     &:focus {
         outline: none;
         border-color: #8ad2d5;
+    }
+}
+
+h2{
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+fieldset {
+    display: flex;
+    justify-self: center;
+    width: 50%;
+    >.login_input_wrapper>.date_selector{
+        width: 100%;
+        border: none;
+        margin: 0;
+        padding: 0;
+        border-bottom: 2px solid #ffffff;
+        color: #ffffff;
+        text-align: left;
     }
 }
 
