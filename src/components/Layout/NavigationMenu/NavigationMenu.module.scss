@@ -104,7 +104,7 @@
           background: unset;
 
           display: flex;
-          justify-content: center;
+          justify-content: flex-end;
           align-items: center;
 
           > svg {
@@ -138,6 +138,7 @@
       width: 100%;
       padding: 10px;
       margin-bottom: 10px;
+      margin-top: 10px;
       text-decoration: none;
       color: var(--white-font-color);
       background-color: transparent;
@@ -167,12 +168,12 @@
       }
 
       &.active {
-        background-color: rgba($color: var(--white-font-color), $alpha: 0.3);
+        background-color: var(--green-color);
         font-weight: font-weight(bold);
       }
 
       &:hover {
-        background-color: rgba($color: var(--white-font-color), $alpha: 0.1);
+        background-color: var(--green-color);
       }
     }
 

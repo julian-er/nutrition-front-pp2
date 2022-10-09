@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useState } from 'react';
 import styles from './NavigationMenu.module.scss';
 import { routes } from '../../../navigation/routes';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { arrowIcon, profileIcon } from '../../../shared/icons';
 
 function NavigationMenu(props: PropsWithChildren) {
@@ -17,10 +17,10 @@ function NavigationMenu(props: PropsWithChildren) {
             <>
               {route.showNavigation && (
                 <li className={styles.navigationItem}>
-                  <Link to={route.url} className={styles.link}>
+                  <NavLink to={route.url} className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}>
                     {route.icon}
                     <span>{route.label}</span>
-                  </Link>
+                  </NavLink>
                 </li>
               )}
             </>
@@ -30,10 +30,10 @@ function NavigationMenu(props: PropsWithChildren) {
       <footer className={styles.footer}>
         <ul className={styles.navigationPages}>
           <li className={styles.navigationItem}>
-            <Link to={'/profile'} className={styles.link}>
+            <NavLink to={'/profile'} className={({ isActive }) => (isActive ? `${styles.link} ${styles.active}` : styles.link)}>
               {profileIcon}
               <span>Profile</span>
-            </Link>
+            </NavLink>
           </li>
           <li className={`${styles.closeMenu} ${styles.navigationItem}`}>
             <button className={`${styles.closeArrowButton} ${styles.link} ${styles.collapse}`} onClick={handleClick}>
