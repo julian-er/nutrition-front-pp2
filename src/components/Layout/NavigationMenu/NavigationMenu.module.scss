@@ -1,7 +1,7 @@
 @import '../../../stylesheets/utilities';
 .asideMenu {
-  width: var(--aside-minmax-width, 160px);
-  min-width: var(--aside-minmax-width, 160px);
+  width: var(--aside-minmax-width, 180px);
+  min-width: var(--aside-minmax-width, 180px);
   height: 100%;
   background-color: var(--grey-asideMenu-color);
   display: flex;
@@ -10,9 +10,9 @@
   transition: max-width 0.3s, min-width 0.3s;
 
   &.hidden {
-    --aside-minmax-width: 50px;
+    --aside-minmax-width: 60px;
     --span-menu-item: 0;
-    --pad-aside-min: 5px;
+    --pad-aside-min: 3px;
     --display: none;
     --rotate: -180deg;
   }
@@ -113,6 +113,8 @@
 
             transition: transform 250ms ease-in-out;
             transform: rotate(var(--rotate, 0));
+            margin-right: 10px;
+            margin-left: 10px;
 
             path {
               fill: var(--green-color);
@@ -142,17 +144,18 @@
       text-decoration: none;
       color: var(--white-font-color);
       background-color: transparent;
-      font-size: 14px;
-      font-weight: font-weight(regular);
+      font-size: 12px;
+
       border-radius: 4px;
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
       transition: background-color 0.3s;
+      outline: none;
 
       > svg {
-        width: 20px;
-        height: 20px;
+        width: 32px;
+        height: 32px;
         path,
         circle {
           fill: var(--white-font-color);
@@ -165,6 +168,7 @@
         text-align: left;
         overflow: hidden;
         display: var(--display, flex);
+        text-transform: uppercase;
       }
 
       &.active {
