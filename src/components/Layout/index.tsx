@@ -5,8 +5,10 @@ import NavigationMenu from './NavigationMenu';
 function Layout(props: PropsWithChildren) {
   return (
     <div className={styles.pageWrapper}>
-        <NavigationMenu />
-      <main className={styles.mainContent}>{props.children}</main>
+      <NavigationMenu />
+      <section className={styles.content}>
+        <main className={styles.mainWrapper}>{props.children}</main>
+      </section>
     </div>
   );
 }

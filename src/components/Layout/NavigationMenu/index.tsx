@@ -10,35 +10,38 @@ function NavigationMenu(props: PropsWithChildren) {
     setIsOpen(!isOpen);
   };
   return (
-    <aside className={`${styles.asideMenu} ${!isOpen ?? styles.hidden}`}>
-      <ul className={styles.navigationPages}>
-        {routes.map(route => (
-          <>
-            {route.showNavigation && (
-              <li className={styles.navigationItem}>
-                <Link to={route.url} className={styles.link}>
-                  {route.icon}
-                  <span>{route.label}</span>
-                </Link>
-              </li>
-            )}
-          </>
-        ))}
-      </ul>
-      <ul className={styles.userConfig}>
-        <li className={styles.navigationItem}>
-          <Link to={'/profile'} className={styles.link}>
-            {profileIcon}
-            <span>Profile</span>
-          </Link>
-        </li>
-      </ul>
-
-      <ul className={styles.userConfig}>
-        <button className={styles.closeArrowButton} onClick={handleClick}>
-          <li className={styles.closeMenu}>{arrowIcon}</li>
-        </button>
-      </ul>
+    <aside className={`${styles.asideMenu} ${!isOpen ? styles.hidden : ''}`}>
+      <nav className={styles.navMenu}>
+        <ul className={styles.navigationPages}>
+          {routes.map(route => (
+            <>
+              {route.showNavigation && (
+                <li className={styles.navigationItem}>
+                  <Link to={route.url} className={styles.link}>
+                    {route.icon}
+                    <span>{route.label}</span>
+                  </Link>
+                </li>
+              )}
+            </>
+          ))}
+        </ul>
+      </nav>
+      <footer className={styles.footer}>
+        <ul className={styles.navigationPages}>
+          <li className={styles.navigationItem}>
+            <Link to={'/profile'} className={styles.link}>
+              {profileIcon}
+              <span>Profile</span>
+            </Link>
+          </li>
+          <li className={`${styles.closeMenu} ${styles.navigationItem}`}>
+            <button className={`${styles.closeArrowButton} ${styles.link} ${styles.collapse}`} onClick={handleClick}>
+              {arrowIcon}
+            </button>
+          </li>
+        </ul>
+      </footer>
     </aside>
   );
 }
