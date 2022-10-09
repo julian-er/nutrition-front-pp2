@@ -1,7 +1,7 @@
 import Layout from '../../components/Layout';
 import styles from './Dashboard.module.scss';
-import DayCard from './DayCard';
-import NoteCard from './NoteCard';
+import DayCard from '../../components/shared/DayCard';
+import NoteCard from '../../components/shared/NoteCard';
 import PatientCard from './PatientCard';
 import { noteCards, patientCards, testData, testDays } from './testData';
 
