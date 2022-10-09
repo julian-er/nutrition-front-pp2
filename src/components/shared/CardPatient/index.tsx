@@ -13,11 +13,11 @@ function Card(props: PropsWithChildren<ICard>) {
     const{name,paragraph,age,profile_image}=props
   return (
     <div className={styles.card_wrapper}>
-      <img className={styles.patient_image} src="https://cdn-icons-png.flaticon.com/512/25/25634.png" alt="user" />
+      <img className={styles.patient_image} src={profile_image} alt="user" />
       <div className={styles.patient_info}>
-        <h2>{name}</h2>
+        <h3>{name}</h3>
         <p>{paragraph}</p>
-        <p>{age}</p>
+        <p>Age: {age}</p>
         </div>
     </div>
   )
