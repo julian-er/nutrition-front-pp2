@@ -1,7 +1,7 @@
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
-import { dashboardIcon, newFoodIcon, notesIcon, pathologiesIcon, patientsIcon, planIcon, profileIcon } from '../shared/icons';
+import { allergiesIcon, dashboardIcon, foodIcon, notesIcon, pathologiesIcon, patientsIcon, profileIcon } from '../shared/icons';
 
 export interface IRoute {
   url: string;
@@ -73,47 +73,28 @@ export const routes = Object.freeze<IRoute[]>([
   },
 
   {
-    url: '/new_food',
-    label: 'New Food',
-    icon: newFoodIcon,
+    url: '/food',
+    label: 'Food',
+    icon: foodIcon,
     showNavigation: true,
     isPublic: false,
     element: (
       <div>
-        <p>NEW FOOD</p>
+        <p>FOOD</p>
       </div>
     )
   },
+
   {
-    url: '/new_food/:new_foodId',
+    url: '/food/:foodId',
     isPublic: false,
     element: (
       <div>
-        <p>NEW FOOD</p>
+        <p>FOOD</p>
       </div>
     )
   },
-  {
-    url: '/plan',
-    label: 'Plan',
-    icon: planIcon,
-    showNavigation: true,
-    isPublic: false,
-    element: (
-      <div>
-        <p>PLAN</p>
-      </div>
-    )
-  },
-  {
-    url: '/plan/:planId',
-    isPublic: false,
-    element: (
-      <div>
-        <p>PLAN</p>
-      </div>
-    )
-  },
+
   {
     url: '/patients',
     label: 'Patients',
@@ -153,6 +134,28 @@ export const routes = Object.freeze<IRoute[]>([
     element: (
       <div>
         <p>PATHOLOGIES</p>
+      </div>
+    )
+  },
+
+  {
+    url: '/allergies',
+    label: 'Allergies',
+    icon: allergiesIcon,
+    showNavigation: true,
+    isPublic: false,
+    element: (
+      <div>
+        <p>ALLERGIES</p>
+      </div>
+    )
+  },
+  {
+    url: '/allergies/:allergiesId',
+    isPublic: false,
+    element: (
+      <div>
+        <p>ALLERGIES</p>
       </div>
     )
   },
