@@ -21,4 +21,8 @@ export default class AuthService extends ApiBaseService {
 
     return res;
   }
+
+  public static async getUserData(){
+    return localStorage.getItem('jwt-token');
+  }
 }
