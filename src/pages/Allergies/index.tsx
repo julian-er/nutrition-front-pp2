@@ -1,12 +1,12 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 
-function Plan() {
+function Allergies() {
   return (
     <Layout>
-      <div>Plan</div>
+      <div>Allergies</div>
     </Layout>
   );
 }
 
-export default Plan;
+export default Allergies;

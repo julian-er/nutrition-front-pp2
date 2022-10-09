@@ -1,6 +1,15 @@
+import NotFound from '../pages/404';
+import Allergies from '../pages/Allergies';
 import Dashboard from '../pages/Dashboard';
+import DayPlan from '../pages/DayPlan/indedx';
+import Food from '../pages/Food';
 import Login from '../pages/Login';
+import Notes from '../pages/Notes';
+import Pathologies from '../pages/Pathologies';
+import Patients from '../pages/Patients';
+import Profile from '../pages/Profile';
 import Register from '../pages/Register';
+import SinglePatient from '../pages/SinglePatient';
 import { allergiesIcon, dashboardIcon, foodIcon, notesIcon, pathologiesIcon, patientsIcon, profileIcon } from '../shared/icons';
 
 export interface IRoute {
@@ -43,11 +52,7 @@ export const routes = Object.freeze<IRoute[]>([
   {
     url: '/404',
     isPublic: false,
-    element: (
-      <div>
-        <p>Error 404</p>
-      </div>
-    )
+    element: <NotFound />
   },
 
   {
@@ -56,65 +61,33 @@ export const routes = Object.freeze<IRoute[]>([
     icon: notesIcon,
     showNavigation: true,
     isPublic: false,
-    element: (
-      <div>
-        <p>NOTES</p>
-      </div>
-    )
+    element: <Notes />
   },
-  {
-    url: '/notes/:notesId',
-    isPublic: false,
-    element: (
-      <div>
-        <p>NOTES</p>
-      </div>
-    )
-  },
-
   {
     url: '/food',
     label: 'Food',
     icon: foodIcon,
     showNavigation: true,
     isPublic: false,
-    element: (
-      <div>
-        <p>FOOD</p>
-      </div>
-    )
+    element: <Food />
   },
-
-  {
-    url: '/food/:foodId',
-    isPublic: false,
-    element: (
-      <div>
-        <p>FOOD</p>
-      </div>
-    )
-  },
-
   {
     url: '/patients',
     label: 'Patients',
     icon: patientsIcon,
     isPublic: false,
     showNavigation: true,
-    element: (
-      <div>
-        <p>PATIENTS</p>
-      </div>
-    )
+    element: <Patients />
   },
   {
     url: '/patients/:patientsId',
     isPublic: false,
-    element: (
-      <div>
-        <p>PATIENTS ID</p>
-      </div>
-    )
+    element: <SinglePatient />
+  },
+  {
+    url: '/patients/:patientsId/day-plan',
+    isPublic: false,
+    element: <DayPlan />
   },
   {
     url: '/pathologies',
@@ -122,64 +95,22 @@ export const routes = Object.freeze<IRoute[]>([
     icon: pathologiesIcon,
     isPublic: false,
     showNavigation: true,
-    element: (
-      <div>
-        <p>PATHOLOGIES</p>
-      </div>
-    )
+    element: <Pathologies />
   },
-  {
-    url: '/pathologies/:pathologiesId',
-    isPublic: false,
-    element: (
-      <div>
-        <p>PATHOLOGIES</p>
-      </div>
-    )
-  },
-
   {
     url: '/allergies',
     label: 'Allergies',
     icon: allergiesIcon,
     showNavigation: true,
     isPublic: false,
-    element: (
-      <div>
-        <p>ALLERGIES</p>
-      </div>
-    )
+    element: <Allergies />
   },
-  {
-    url: '/allergies/:allergiesId',
-    isPublic: false,
-    element: (
-      <div>
-        <p>ALLERGIES</p>
-      </div>
-    )
-  },
-
   {
     url: '/profile',
-    label: 'Profile',
     icon: profileIcon,
     showNavigation: false,
     isPublic: false,
-    element: (
-      <div>
-        <p>PROFILES</p>
-      </div>
-    ) 
-  },
-  {
-    url: '/profile/:profileId',
-    isPublic: false,
-    element: (
-      <div>
-        <p>PROFILE ID</p>
-      </div>
-    )
+    element: <Profile />
   },
   {
     url: "register",
