@@ -13,9 +13,6 @@ export interface IRegisterRequest {
   isPatient:boolean
 }
 
-
-
-
 export default class RegisterService extends ApiBaseService {
   public static async register({ user_name, password, email, first_name, last_name, phone_number, birth_date, profile_image, isNutritionist, isPatient}: IRegisterRequest): Promise<IResponse<any>> {
     console.log( user_name, password, email, first_name, last_name, phone_number, birth_date, profile_image, isNutritionist, isPatient)
