@@ -1,4 +1,11 @@
 :root {
+
+  //common variables
+  --border-radius : 6px;
+
+  // color variables
+  --white-color: #FFFFFF;
+  --black-color: #000000;
   --white-font-color: #ffffff;
   --grey-asideMenu-color: #636469;
   --blue-color: #206091;
@@ -6,4 +13,7 @@
   --orange-color: #faa954;
   --red-color: #fe7984;
   --green-color: #6da291;
+
+  --module-card-background: #E0E0E0;
+  --bacground-color: #ECF0F3;
 }
