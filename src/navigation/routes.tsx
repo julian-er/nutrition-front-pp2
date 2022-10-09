@@ -2,7 +2,7 @@ import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Nutritionist from "../pages/Nutritionist";
 import Register from  "../pages/Register";
-
+import Patients  from "../pages/Patients";
 export interface IRoute {
   url: string;
   label?: string;
@@ -44,11 +44,11 @@ export const routes = Object.freeze<IRoute[]>([
     element: <div><p>NUTRITIONIST ID</p></div>,
   },
   {
-    url: "patients",
+    url: "/patients",
     label: "Patients",
     isPublic: false,
     showNavigation: true,
-    element: <div><p>PATIENTS</p></div>,
+    element: <Patients/>
   },
   {
     url: "patients/:patientsId",
