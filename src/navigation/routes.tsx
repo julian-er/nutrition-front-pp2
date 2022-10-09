@@ -1,7 +1,6 @@
 import Dashboard from '../pages/Dashboard';
 import Login from '../pages/Login';
-import Profile from '../pages/Profile';
-import Nutritionist from '../pages/Profile';
+import Register from '../pages/Register';
 import { dashboardIcon, newFoodIcon, notesIcon, pathologiesIcon, patientsIcon, planIcon, profileIcon } from '../shared/icons';
 
 export interface IRoute {
@@ -168,7 +167,7 @@ export const routes = Object.freeze<IRoute[]>([
       <div>
         <p>PROFILES</p>
       </div>
-    ) // esto debería llamarse nutritionists o professional como en el dashboard???
+    ) 
   },
   {
     url: '/profile/:profileId',
@@ -178,5 +177,11 @@ export const routes = Object.freeze<IRoute[]>([
         <p>PROFILE ID</p>
       </div>
     )
+  },
+  {
+    url: "register",
+    label: "Register",
+    isPublic: true,
+    element: <Register />,
   }
 ]);
