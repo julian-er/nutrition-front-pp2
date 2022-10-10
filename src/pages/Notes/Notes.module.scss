@@ -85,6 +85,7 @@
             justify-content: center;
 
             .addNote {
+                width: 250px;
                 min-width: 250px;
                 height: 200px;
                 border: none;
@@ -104,6 +105,11 @@
 
             @media (max-width :830px) {
                 grid-template-columns: repeat(1, 1fr);
+
+                .addNote{
+                    min-width: unset;
+                    margin: auto;
+                }
             }
         }
     }
