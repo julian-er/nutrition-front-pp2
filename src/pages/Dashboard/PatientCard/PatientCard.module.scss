@@ -1,0 +1,14 @@
+.patientWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid;
+
+    >h3,
+    >p {
+        line-height: 1;
+        margin: 0;
+    }
+}

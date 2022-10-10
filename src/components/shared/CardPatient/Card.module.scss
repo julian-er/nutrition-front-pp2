@@ -2,7 +2,7 @@
     display: flex;
     text-align: left;
     align-items: center;
-    background-color: var(--grey-asideMenu-color);
+    background-color: var(--module-card-background);
     width: 40%;
     padding: 0px 10px;
     margin: 20px;
@@ -12,7 +12,7 @@
         display: flex;
         flex-direction: column;
         text-align: left;
-        color: var(--white-font-color);
+        color: var(--black-color);
         padding: 0 15px;
         max-width: 80%;
         >p{

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { professionalIcon } from '../../../shared/icons';
+import { profileIcon } from '../../../shared/icons';
 import styles from './NewPatient.module.scss';
 
 function NewPatient({setShowModal, showModal}:any){
@@ -40,7 +40,7 @@ return (
                             <img className={styles.user_photo} src={form.profile_image} alt="user photo" />
                         </div>)
                         : (<>
-                            {professionalIcon}
+                            {profileIcon}
                         </>)
                     }
                     <input id="file-input" className={styles.file_input} type={"file"}/>

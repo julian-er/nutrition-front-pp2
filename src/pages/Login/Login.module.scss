@@ -151,7 +151,7 @@
           animation: rotation 2s linear infinite;
         }
 
-        >span{
+        > span {
           display: block;
           opacity: 0;
           animation: fade_in 500ms ease-in-out forwards;
@@ -162,13 +162,13 @@
 }
 
 // Media queries
-@media ($tablet) {
+@media #{$tablet} {
   .login_form {
     width: 80%;
   }
 }
 
-@media ($mobile) {
+@media #{$mobile} {
   .login_form {
     width: 100%;
   }

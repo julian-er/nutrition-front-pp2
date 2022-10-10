@@ -1,7 +1,10 @@
 //Basic
 @import './reboot';
 @import './global';
-@import "./variables/variables";
+@import './variables/variables';
+
+//Mixins
+@import './mixins';
 
 //Animations
 @import './animations';
