@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react"
-import styles from "./SingleNote.module.scss"
+import styles from "./SinglePathology.module.scss"
 
 interface ISinglePathologieProps {
     title: string,

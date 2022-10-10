@@ -1,5 +1,5 @@
-import { PropsWithChildren } from "react"
-import styles from "./DayCard.module.scss"
+import { PropsWithChildren } from 'react';
+import styles from './DayCard.module.scss';
 
 interface IDayCard {
   title: string,
@@ -23,7 +23,7 @@ function DayCard(props: PropsWithChildren<IDayCard>) {
         <p>{patientName}</p>
       </div>
     </div>
-  )
+  );
 }
 
-export default DayCard
+export default DayCard;

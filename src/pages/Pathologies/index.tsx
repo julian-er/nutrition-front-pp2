@@ -1,8 +1,9 @@
-//import React, { ButtonHTMLAttributes, useState } from 'react';
+import React, { ButtonHTMLAttributes, useState } from 'react';
 import Layout from '../../components/Layout';
 import { addIcon } from '../../shared/icons';
 import styles from './Pathologies.module.scss';
-//import SingleNote from './SinglePathology';
+import SinglePathologie from './SinglePathology';
+import { testPathology } from './test-pathology';
 
 
 function Pathologies() {
@@ -28,7 +29,12 @@ function Pathologies() {
                 {addIcon}
                 <span> Add new Pathology </span>
               </button>
-
+              {
+                testPathology.map((note)=> <SinglePathologie {...{ ...note }} />)
+              }
+              {
+                testPathology.map((note) => <SinglePathologie {...{ ...note }} />)
+              }
             </div>
           </section>
           <section className={styles.rightSide}>
