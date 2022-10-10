@@ -18,7 +18,7 @@ function DayCard(props: PropsWithChildren<IDayCard>) {
       </div>
       <div className={styles.profile}>
         <div className={styles.imageWrapper}>
-          <img src={patientImage} />
+          <img src={patientImage} alt='user-profile'/>
         </div>
         <p>{patientName}</p>
       </div>
