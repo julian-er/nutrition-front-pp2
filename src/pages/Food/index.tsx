@@ -1,12 +1,12 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 
-function Nutritionist() {
+function Food() {
   return (
     <Layout>
-      <div>Nutritionist</div>
+      <div>New food</div>
     </Layout>
   );
 }
 
-export default Nutritionist;
+export default Food;

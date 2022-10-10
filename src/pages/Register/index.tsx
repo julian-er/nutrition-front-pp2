@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RegisterService, { IRegisterRequest } from '../../services/registerServices/registerService';
-import { acceptIcon, cancelIcon, professionalIcon } from '../../shared/icons';
+import { acceptIcon, cancelIcon, profileIcon } from '../../shared/icons';
 import Modal, { IButton } from '../../components/shared/NutModal';
 import styles from './Register.module.scss';
 import { IObjectValidationsProperties, objectValidations } from '../../helpers';
@@ -202,7 +202,7 @@ function Register() {
                             <img className={styles.user_photo} src={form.profile_image} alt="user photo" />
                         </div>)
                         : (<>
-                            {professionalIcon}
+                            {profileIcon}
                         </>)
                     }
                     <input id="file-input" className={styles.file_input} type={"file"} onChange={handleFileInputChange} />

@@ -1,16 +1,17 @@
 
 .backdrop{
     position: fixed;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba( 0, 0, 0 , 0.5);
+    // background-color: rgba( 0, 0, 0 , 0.1);
     
     .modal_wrapper{
-        min-width:50%;
-        max-height: 95vh;
+        min-width:60%;
+        max-height: 95%;
+        max-width: 90%;
         background-color: var(--grey-asideMenu-color);
         display: flex;
         flex-direction: column;
@@ -37,7 +38,7 @@
           width: 50%;
           path,
           polygon {
-              fill: #8ad2d5;
+              fill: var(--green-color);
             }
         transition: scale 500ms ease-in-out;
     }
@@ -79,7 +80,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 90%;
     margin: 5%;
     text-align: center;
     >p{
@@ -101,7 +102,7 @@
 
     &:focus {
         outline: none;
-        border-color: #8ad2d5;
+        border-color: var(--green-color);
     }
 }
 
@@ -114,8 +115,10 @@ fieldset {
     justify-self: center;
     display: flex;
     width: 100%;
+    height: 10%;
+    align-items: center;
     >.new_user_input_wrapper>.date_selector{
-        width: 100%;
+        width: 80%;
         border: none;
         margin: 0;
         padding: 0;
@@ -129,24 +132,22 @@ fieldset {
     cursor: pointer;
     color: #ffffff;
     border: 1px solid #ffffff;
-    border-radius: 4px;
     text-transform: uppercase;
     text-align: center;
-    padding: 0 15px;
     min-height: 37px;
     margin: 20px;
     background-color: transparent;
     transition: background-color 250ms ease-in-out;
     width: 40%;
     &:hover {
-        background-color: #8ad2d5;
+        background-color: var(--green-color);
     }
 }
 
 .new_user_btn_register{
     text-decoration: none;
     text-transform: uppercase;
-    background-color: #8ad2d5;
+    background-color: var(--green-color);
     color: #ffffff;
     transition: color 250ms ease-in-out background-color 250ms ease-in-out transform 250ms ease-in-out;
     &:hover {

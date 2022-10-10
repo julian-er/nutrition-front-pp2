@@ -4,6 +4,7 @@ import getUserLoggedData from '../../services/authServices/loggedUserService';
 import { useEffect, useState } from 'react';
 import NutritionistService , { IPatientsRequest }from '../../services/nutritionistServices/nutritionistService';
 import NewPatient from '../../components/shared/RegisterPatient';
+import Layout from '../../components/Layout';
 
 function Patients() {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -41,6 +42,7 @@ function Patients() {
   
 
   return (
+    <Layout>
     <div className={styles.patients_wrapper}>
       <h1 className={styles.patients_title}>Patients</h1>
       <input type={'search'} />
@@ -49,7 +51,7 @@ function Patients() {
         age="22"
         paragraph="Este paciente tiene problemas al cardiacos y es alergico a la coca-colaaa"
         profile_image="https://cdn-icons-png.flaticon.com/512/25/25634.png"
-      />
+        />
       <Card
         name="Hugo nuñez"
         age="42"
@@ -59,6 +61,7 @@ function Patients() {
       <button className={styles.patient_btn_add}  onClick={handlePrevent}>Add Patient</button>
       {showModal? <NewPatient showModal={showModal} setShowModal={setShowModal}/> :  []}
     </div>
+    </Layout>
   );
 }
 

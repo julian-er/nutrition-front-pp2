@@ -1,0 +1,36 @@
+$weights: (
+  thin: 100,
+  extra-light: 200,
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+  extra-bold: 800,
+  black: 900
+);
+
+@function font-weight($weight) {
+  @if (map-has-key($weights, $weight)) {
+    @return map-get($weights, $weight);
+  } @else {
+    @error "The provided value for font-weight (#{$weight}) doesn't exist.";
+  }
+}
+
+// z-index list here
+$zIndex: (
+  back: -1,
+  basic: 1,
+  header: 50,
+  important: 100,
+  popup: 200
+);
+
+@function z-index($value) {
+  @if (map-has-key($zIndex, $value)) {
+    @return map-get($zIndex, $value);
+  } @else {
+    @error "The provided value for z-index (#{$value}) doesn't exist.";
+  }
+}
