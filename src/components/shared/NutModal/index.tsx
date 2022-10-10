@@ -15,7 +15,7 @@ export interface IButton {
 
 
 
-function Modal(props: PropsWithChildren<IModal>) {
+const Modal=(props: PropsWithChildren<IModal>)=> {
   const { title, paragraph, buttons } = props
   return (
     <div className={styles.backdrop}>

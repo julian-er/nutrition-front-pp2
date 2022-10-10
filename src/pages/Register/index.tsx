@@ -28,8 +28,6 @@ function Register() {
 
     const handleRegister = async (e: React.MouseEvent) => {
         e.preventDefault();  
-
-
         setShowModal(false);
         setTimeout(async () => {
             try {

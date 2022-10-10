@@ -2,43 +2,48 @@ import styles from './Patients.module.scss';
 import Card from '../../components/shared/CardPatient';
 import getUserLoggedData from '../../services/authServices/loggedUserService';
 import { useEffect, useState } from 'react';
+import NutritionistService , { IPatientsRequest }from '../../services/nutritionistServices/nutritionistService';
+import NewPatient from '../../components/shared/RegisterPatient';
 
 function Patients() {
-  
-  const [user, setUser]:any = useState({ 
-    id:"",
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [user, setUser]:any = useState<IPatientsRequest>({ 
+    id:0,
     first_name:"",
     last_name:"",
-    email:"",
-    phone_number:"",
     user_name:"",
     profile_image:""
   })
 
+  const getPatients= async(id:any)=>{
+    const response = await NutritionistService.getNutritionistPatients(id);
+  }
 
+  const handlePrevent = (e:any) => {
+    e.preventDefault();
+    setShowModal(true)
+}
 
   useEffect(() => {
     const getUserData = async () => {
       const userData = await getUserLoggedData();
-      console.log(userData)
       setUser({
         id:userData.id,
         first_name:userData.first_name,
         last_name:userData.last_name,
-        email:userData.email,
-        phone_number:userData.phone_number,
+        user_name:userData.user_name,
         profile_image:userData.profile_image 
       })
+      getPatients(userData.id);
     }
     getUserData();
-    //getPatients(user);
   }, []);
+  
 
   return (
     <div className={styles.patients_wrapper}>
       <h1 className={styles.patients_title}>Patients</h1>
       <input type={'search'} />
-
       <Card
         name="Adan Volken"
         age="22"
@@ -51,7 +56,8 @@ function Patients() {
         paragraph="una cara de boludo"
         profile_image="https://los40.com/los40/imagenes/2022/04/13/bigbang/1649847016_940843_1649847228_gigante_normal.jpg"
       />
-      <button className={styles.patient_btn_add}>Add Patient</button>
+      <button className={styles.patient_btn_add}  onClick={handlePrevent}>Add Patient</button>
+      {showModal? <NewPatient showModal={showModal} setShowModal={setShowModal}/> :  []}
     </div>
   );
 }
