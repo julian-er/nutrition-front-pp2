@@ -2,11 +2,11 @@
 .backdrop{
     position: fixed;
     height: 100%;
-    width: 100%;
+    width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
-    // background-color: rgba( 0, 0, 0 , 0.1);
+    background-color: rgba( 0, 0, 0 , 0.1);
     
     .modal_wrapper{
         min-width:60%;
