@@ -3,7 +3,7 @@ import Card from '../../components/shared/CardPatient';
 import getUserLoggedData from '../../services/authServices/loggedUserService';
 import { useEffect, useState } from 'react';
 import NutritionistService , { IPatientsRequest }from '../../services/nutritionistServices/nutritionistService';
-import NewPatient from '../../components/shared/RegisterPatient';
+import NewPatient from '../../components/shared/NewPatientModal';
 import Layout from '../../components/Layout';
 
 function Patients() {
