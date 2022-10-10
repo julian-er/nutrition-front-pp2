@@ -19,7 +19,7 @@
         width: calc(20vh - 50px);
         border-radius: 50%;
 
-        .profile_image {
+        .profile_image, svg {
             position: absolute;
             object-fit: cover;
             width: 100%;
