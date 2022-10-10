@@ -106,6 +106,7 @@
           display: flex;
           justify-content: flex-end;
           align-items: center;
+          outline: none;
 
           > svg {
             width: 20px;
@@ -178,6 +179,10 @@
 
       &:hover {
         background-color: var(--green-color);
+      }
+
+      &:focus {
+        outline: 1px solid var(--green-color);
       }
     }
 
