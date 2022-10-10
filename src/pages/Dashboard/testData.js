@@ -5,35 +5,35 @@ export const testData = {
 export const testDays = [
     {
         title: 'test day card',
-        dishes: 4,
+        totalDishes: 4,
         patientName: 'cosme fulanito',
         patientImage: testData.image,
         id: 1
     },
     {
         title: 'test day card',
-        dishes: 4,
+        totalDishes: 4,
         patientName: 'cosme fulanito',
         patientImage: testData.image,
         id: 2
     },
     {
         title: 'test day card',
-        dishes: 4,
+        totalDishes: 4,
         patientName: 'cosme fulanito',
         patientImage: testData.image,
         id: 3
     },
     {
         title: 'test day card',
-        dishes: 4,
+        totalDishes: 4,
         patientName: 'cosme fulanito',
         patientImage: testData.image,
         id: 4
     },
     {
         title: 'test day card',
-        dishes: 4,
+        totalDishes: 4,
         patientName: 'cosme fulanito',
         patientImage: testData.image,
         id: 5

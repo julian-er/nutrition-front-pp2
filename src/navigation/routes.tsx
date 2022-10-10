@@ -110,7 +110,7 @@ export const routes = Object.freeze<IRoute[]>([
     url: '/profile',
     icon: profileIcon,
     showNavigation: false,
-    isPublic: false,
+    isPublic: false ,
     element: <Profile />
   },
   {

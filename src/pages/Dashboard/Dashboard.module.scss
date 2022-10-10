@@ -1,6 +1,18 @@
 @import '../../stylesheets/mixins';
 
 .header {
+  position: relative;
+  height: 30vh;
+  padding: 50px;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px -2px rgb(0 0 0 / 20%);
+  background-color: var(--module-card-background);
+
+  display: flex;
+  align-items: center;
+
+  .imageWrapper {
     position: relative;
     height: 30vh;
     padding: 50px;
@@ -19,7 +31,7 @@
         width: calc(20vh - 50px);
         border-radius: 50%;
 
-        .profile_image {
+        .profile_image, svg {
             position: absolute;
             object-fit: cover;
             width: 100%;
@@ -30,112 +42,110 @@
             right: 0;
         }
     }
+  }
 
-    .name {
-        color: var(--black-color);
-        margin-left: 50px;
-        font-size: 30px;
-        text-transform: capitalize;
+  .name {
+    color: var(--black-color);
+    margin-left: 50px;
+    font-size: 30px;
+    text-transform: capitalize;
 
-        .surname {
-            text-transform: capitalize;
+    .surname {
+      text-transform: capitalize;
 
-            &::before {
-                content: "\a";
-                white-space: pre;
-            }
-        }
+      &::before {
+        content: '\a';
+        white-space: pre;
+      }
     }
+  }
 
+  .buttonsWrapper {
+    position: absolute;
+    right: 50px;
+    bottom: -50px;
+    height: 100px;
+    display: flex;
+    min-width: 40vw;
+    justify-content: space-around;
+    align-items: center;
 
-    .buttonsWrapper {
-        position: absolute;
-        right: 50px;
-        bottom: -50px;
-        height: 100px;
-        display: flex;
-        min-width: 40vw;
-        justify-content: space-around;
-        align-items: center;
+    > button {
+      height: 50px;
+      width: 150px;
+      border-radius: 6px;
+      border: none;
+      background-color: var(--green-color);
+      color: var(--white-font-color);
+      font-weight: 600;
+      transition: transform 250ms ease-in-out;
 
-        >button {
-            height: 50px;
-            width: 150px;
-            border-radius: 6px;
-            border: none;
-            background-color: var(--green-color);
-            color: var(--white-font-color);
-            font-weight: 600;
-            transition: transform 250ms ease-in-out;
+      cursor: pointer;
 
-            cursor: pointer;
-
-            &:hover {
-                transform: scale(1.1) translateZ(0);
-                backface-visibility: hidden;
-            }
-        }
+      &:hover {
+        transform: scale(1.1) translateZ(0);
+        backface-visibility: hidden;
+      }
+      &:focus {
+        outline: 1px solid var(--grey-asideMenu-color);
+        border-radius: 3px;
+      }
     }
-
+  }
 }
 
 .content {
-    width: 100%;
-    height: calc(67vh - 50px - 3vh);
+  width: 100%;
+  height: calc(67vh - 50px - 3vh);
+  display: flex;
+  gap: 5vw;
+
+  .leftSide {
     display: flex;
-    gap: 5vw;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    gap: 3vh;
+    margin: 0;
 
-    .leftSide {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        gap: 3vh;
-        margin: 0;
+    .lastNotes,
+    .lastPatients {
+      width: 100%;
+      height: calc(50% - 1.5vh);
+      border-radius: 10px;
+      box-shadow: 0px 5px 10px -2px rgb(0 0 0 / 20%);
+      background-color: var(--module-card-background);
 
-
-        .lastNotes,
-        .lastPatients {
-            width: 100%;
-            height: calc(50% - 1.5vh);
-            border-radius: 10px;
-            box-shadow: 0px 5px 10px -2px rgb(0 0 0 / 20%);
-            background-color: var(--module-card-background);
-
-            .contentWrapper {
-                height: 70%;
-                padding: 0 2vw;
-                overflow: auto;
-                @include custom_scrollbar();
-            }
-        }
-
-
-
+      .contentWrapper {
+        height: 70%;
+        padding: 0 2vw;
+        overflow: auto;
+        @include custom_scrollbar();
+      }
     }
+  }
 
+  .rightSide {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px -2px rgb(0 0 0 / 20%);
+    background-color: var(--module-card-background);
+    overflow: hidden;
 
-    .rightSide {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        border-radius: 10px;
-        box-shadow: 0px 5px 10px -2px rgb(0 0 0 / 20%);
-        background-color: var(--module-card-background);
-        overflow: hidden;
-
-        .dietsWrapper {
-            height: 90%;
-            overflow: auto;
-            @include custom_scrollbar();
-        }
+    .dietsWrapper {
+      height: 90%;
+      overflow: auto;
+      @include custom_scrollbar();
     }
+  }
 
-    .cardTitle {
-        color: var(--black-color);
-        font-size: 25px;
-        text-align: center;
-        padding: 10px 0;
-        margin: 0;
-    }
+  .cardTitle {
+    color: var(--black-color);
+    font-size: 25px;
+    text-align: center;
+    padding: 10px 0;
+    margin: 0;
+  }
 }
