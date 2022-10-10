@@ -2,127 +2,113 @@
 @import '../../stylesheets/variables/media-queries';
 
 .pageWrapper {
-    width: 100%;
-    height: calc(100% - 3vh);
-    border-radius: var(--border-radius-containers);
-    box-shadow: 0px 5px 10px -2px rgb(0 0 0 / 20%);
-    background-color: var(--module-card-background);
+  width: 100%;
+  height: calc(100% - 3vh);
+  border-radius: var(--border-radius-containers);
+  box-shadow: 0px 5px 10px -2px rgb(0 0 0 / 20%);
+  background-color: var(--module-card-background);
 }
 
 .headerWrapper {
-    width: 100%;
-    height: 10%;
+  width: 100%;
+  height: 10%;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    >h2 {
-        font-size: 25px;
-        color: var(--black-color)
-    }
+  > h2 {
+    font-size: 25px;
+    color: var(--black-color);
+  }
 }
 
 .content {
-    height: 90%;
+  height: 90%;
+  width: 100%;
+
+  .selectorWrapper {
     width: 100%;
+    border-bottom: 1px solid rgb(180, 177, 177);
 
-    .selectorWrapper {
-        width: 100%;
-        border-bottom: 1px solid rgb(180, 177, 177);
+    > button {
+      background: none;
+      border: none;
+      border-radius: var(--border-radius);
+      transition: background-color 250ms ease-in-out;
+      cursor: pointer;
 
-        >button {
-            background: none;
-            border: none;
-            border-radius: var(--border-radius);
-            transition: background-color 250ms ease-in-out;
-            cursor: pointer;
+      &.selected {
+        position: relative;
+        background-color: #d3d3d3;
 
-            &.selected {
-                position: relative;
-                background-color: #d3d3d3;
-
-                &::after {
-                    content: "";
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 2px;
-                    background-color: var(--green-color);
-                }
-            }
-
-            &:hover {
-                background-color: #d3d3d3;
-            }
-
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: var(--green-color);
         }
+      }
+
+      &:hover {
+        background-color: #d3d3d3;
+      }
+    }
+  }
+
+  .mainSection {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 2vh 2vw;
+
+    > h2 {
+      font-size: 25px;
+      color: var(--black-color);
+      text-align: center;
     }
 
-    .leftSide,
-    .rightSide {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 2vh 2vw;
+    .notesWrapper {
+      @include custom_scrollbar();
+      overflow: auto;
+      margin-top: 3vh;
+      height: 90%;
 
-        >h2 {
-            font-size: 25px;
-            color: var(--black-color);
-            text-align: center
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      justify-content: center;
+
+      .addNote {
+        width: 250px;
+        min-width: 250px;
+        height: 200px;
+        border: none;
+        border-radius: var(--border-radius);
+        background-color: var(--white-color);
+        padding: 5%;
+
+        > svg {
+          width: 30%;
+          height: 30%;
         }
 
-        .notesWrapper {
-            @include custom_scrollbar();
-            overflow: auto;
-            margin-top: 3vh;
-            height: 90%;
-
-            display: grid;
-            gap: 20px;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            justify-content: center;
-
-            .addNote {
-                width: 250px;
-                min-width: 250px;
-                height: 200px;
-                border: none;
-                border-radius: var(--border-radius);
-                background-color: var(--white-color);
-                padding: 5%;
-
-                >svg {
-                    width: 30%;
-                    height: 30%;
-                }
-
-                >span {
-                    display: block;
-                }
-            }
-
-            @media (max-width :830px) {
-                grid-template-columns: repeat(1, 1fr);
-
-                .addNote{
-                    min-width: unset;
-                    margin: auto;
-                }
-            }
+        > span {
+          display: block;
         }
+      }
+
+      @media (max-width: 830px) {
+        grid-template-columns: repeat(1, 1fr);
+
+        .addNote {
+          min-width: unset;
+          margin: auto;
+        }
+      }
     }
-
-    &.patientNotes {
-        .leftSide {
-            display: none
-        }
-    }
-
-    &.personalNotes {
-        .rightSide {
-            display: none
-        }
-    }
+  }
 }
