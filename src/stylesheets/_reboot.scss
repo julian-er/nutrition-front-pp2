@@ -537,3 +537,11 @@ Needed for proper display in IE 10-.
 [hidden] {
   display: none !important;
 }
+
+/**
+ * Remove focus styles for non-keyboard focus.
+ */
+ :focus:not(:focus-visible) {
+  outline: 0;
+  box-shadow: none;
+}
