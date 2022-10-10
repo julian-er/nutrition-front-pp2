@@ -44,7 +44,6 @@ function Login() {
     <div className={`${styles.login_wrapper} ${loading ? styles.login_loading : ''}`}>
       <form className={styles.login_form}>
         <div className={styles.login_logo}>{logoApp} <span> logging in ...</span></div>
-        
         <div className={styles.login_input_wrapper}>
           <input className={styles.login_input} id="id" type={'text'} placeholder="username" name="user_name" onChange={handleSetForm} value={form?.user_name} />
           <Link to="#" className={styles.login_forgot}>

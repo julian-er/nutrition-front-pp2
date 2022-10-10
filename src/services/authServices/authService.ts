@@ -10,6 +10,9 @@ export interface ILogin {
 }
 
 export default class AuthService extends ApiBaseService {
+  static getPathologieData() {
+      throw new Error('Method not implemented.');
+  }
   public static async login({ user_name, password }: ILoginRequest): Promise<IResponse<ILogin>> {
     let res = await this.unsecuredPost<ILogin>(`login`, { user_name, password });
 
@@ -21,4 +24,11 @@ export default class AuthService extends ApiBaseService {
 
     return res;
   }
+
+  public static async getUserData(){
+    return localStorage.getItem('jwt-token');
+  }
 }
+
+
+
