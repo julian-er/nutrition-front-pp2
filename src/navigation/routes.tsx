@@ -114,9 +114,9 @@ export const routes = Object.freeze<IRoute[]>([
     element: <Profile />
   },
   {
-    url: "register",
-    label: "Register",
+    url: 'register',
+    label: 'Register',
     isPublic: true,
-    element: <Register />,
+    element: <Register />
   }
 ]);
