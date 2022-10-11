@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { acceptIcon, cancelIcon, profileIcon } from '../../shared/icons';
 import Modal, { IButton } from '../../components/shared/NutModal';
-import RegisterService, { IRegisterRequest } from '../../services/entityServices/RegisterService';
+import RegisterService, { getBase64, IRegisterRequest } from '../../services/entityServices/RegisterService';
 import styles from './Register.module.scss';
 import { IObjectValidationsProperties, objectValidations } from '../../helpers';
 
@@ -48,18 +48,6 @@ function Register() {
         }, 2000);
     };
 
-    const getBase64 = (file: Blob) => {
-        return new Promise(resolve => {
-            let baseURL: any = "";
-            let reader = new FileReader();
-            // Convert the file to base64 text
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                baseURL = reader.result;
-                resolve(baseURL);
-            };
-        });
-    };
 
     const handleFileInputChange = (e: any) => {
         let file = e.target.files[0];

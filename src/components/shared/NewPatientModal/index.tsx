@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import RegisterService, { getBase64 } from '../../../services/entityServices/RegisterService';
 import { profileIcon } from '../../../shared/icons';
 import styles from './NewPatient.module.scss';
 
@@ -24,6 +25,42 @@ function NewPatient({setShowModal, showModal}:any){
         });
     };
 
+
+    const handleCreatePatient=(e:any)=>{
+        setShowModal(false);
+        e.preventDefault()
+         setTimeout(async () => {
+            try {
+                    const response = await RegisterService.register(form);
+                    if (response.success) {
+                        console.log("USUARIO CREADO");
+                    } else {
+                        console.error(response.message);
+                    }
+            } catch (error) {
+                console.log('error en catch');
+                console.error(error);
+            }
+        }, 2000);
+    }
+
+    const handleFileInputChange = (e: any) => {
+        let file = e.target.files[0];
+        getBase64(file)
+            .then((result: any) => {
+                file["base64"] = result;
+                setForm({
+                    ...form,
+                    profile_image: result
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+    };
+
+
     const handlePrevent = (e:any) => {
         e.preventDefault();
         setShowModal(false)
@@ -37,13 +74,13 @@ return (
             <div className={styles.new_user_logo}>
                     {form.profile_image !== null ?
                         (<div className={styles.image_container}>
-                            <img className={styles.user_photo} src={form.profile_image} alt="user photo" />
+                            <img className={styles.user_photo} src={form.profile_image} alt="user" />
                         </div>)
                         : (<>
                             {profileIcon}
                         </>)
                     }
-                    <input id="file-input" className={styles.file_input} type={"file"}/>
+                 <input id="file-input" className={styles.file_input} type={"file"} onChange={handleFileInputChange}/>
                 </div>
                 <fieldset>
                         <div className={styles.new_user_input_wrapper}>
@@ -73,7 +110,7 @@ return (
                     <button className={styles.new_user_btn} onClick={handlePrevent}>
                         Back
                     </button>
-                    <button className={`${styles.new_user_btn}  ${styles.new_user_btn_register}`}>
+                    <button className={`${styles.new_user_btn}  ${styles.new_user_btn_register}`} onClick={handleCreatePatient}>
                         Register
                     </button>
                 </section>
