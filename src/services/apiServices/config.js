@@ -1,3 +1,3 @@
 exports.config = {
-    apiUrl : "http://192.168.100.21:8000"
-}
+  apiUrl: 'http://localhost:8000'
+};
