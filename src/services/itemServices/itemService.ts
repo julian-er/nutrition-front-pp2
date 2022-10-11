@@ -7,7 +7,6 @@ export interface ICreateRequest {
 
 export default class CreateItemService extends ApiBaseService {
   public static async createItem({name, description}: ICreateRequest, type:string): Promise<IResponse<any>> {
-    console.log( name, description, type)
     let res = await this.unsecuredPost(`${type}/create`, {name, description});
     return res;
   }

@@ -1,17 +1,32 @@
-import { useState } from 'react';
+import { ReactEventHandler, useEffect, useState } from 'react';
 import { addIcon } from '../../shared/icons';
-import { testPathology } from './test-pathology';
 import Layout from '../../components/Layout';
 import SinglePathology from './SinglePathology';
 import NewHealthModal from '../../components/shared/NewHealthModal';
 import styles from './Pathologies.module.scss';
+import PathologiesServices from '../../services/pathologiesServices/pathologiesService';
 
 function Pathologies() {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [form, setForm] = useState({
-    name: "",
-    description:""
-});
+  const [pathologiesData, setPathologiesData]=useState([])
+  const [search, setSearch]=useState<string>("");
+
+useEffect(() => {
+  handlePathologiesData()
+}, [showModal])
+
+const handlePathologiesData = async () => {
+    const response = await PathologiesServices.getPathologiesData();
+    if (response.success) {
+      setPathologiesData(response.response);
+    } else {
+      console.error(response.message);
+    }
+  }
+ 
+  const handleSetSearch=(e:any)=>{
+    setSearch(e.target.value)
+  }
 
   return (
     <Layout>
@@ -21,7 +36,7 @@ function Pathologies() {
           <h2>Pathologies</h2>
           <div className={styles.searchWrapper}>
             <p>Search</p>
-            <input type={'search'} />
+            <input type={'search'} onChange={handleSetSearch}/>
           </div>
         </header>
         <div className={styles.content}>
@@ -31,11 +46,9 @@ function Pathologies() {
                 {addIcon}
                 <span> Add new Pathology </span>
               </button>
-              {
-                testPathology.map((note)=> <SinglePathology {...{ ...note }} />)
-              }
-              {
-                testPathology.map((note) => <SinglePathology {...{ ...note }} />)
+              { 
+                pathologiesData.map((pathology:any)=>pathology.name.toLowerCase().includes(search.toLowerCase())?<SinglePathology name={pathology.name} description={pathology.description}/>
+                :[])
               }
             </div>
           </section>
@@ -43,7 +56,10 @@ function Pathologies() {
       </div>
     </Layout>
   );
-}  
+};
+
+
+
 
 export default Pathologies;
 
