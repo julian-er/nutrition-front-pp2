@@ -23,7 +23,7 @@ function Register() {
         birth_date: "",
         profile_image: null,
         isNutritionist: true,
-        isPatient: false
+        isPatient: false,
     });
 
     const handleRegister = async (e:React.MouseEvent) => { 
