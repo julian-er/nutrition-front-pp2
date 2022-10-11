@@ -26,12 +26,11 @@ function Register() {
         isPatient: false
     });
 
-    const handleRegister = async (e: React.MouseEvent) => {
-        e.preventDefault();  
+    const handleRegister = async (e:React.MouseEvent) => { 
         setShowModal(false);
+        e.preventDefault()
         setTimeout(async () => {
             try {
-                    console.log(form);
                     setLoading(true);
                     const response = await RegisterService.register(form);
                     if (response.success) {
@@ -80,15 +79,14 @@ function Register() {
 
     const handleValidatePassword = (e: any) => {
         const passwordConfirm = e.target.value
-        if(passwordConfirm == form.password){
+        if(passwordConfirm === form.password && passwordConfirm!=""){
             setConfirmPass(true);
             setError("")
             }
-        else {setConfirmPass(false);
+        else {
+            setConfirmPass(false);
             setError("Passwords do not match");
             }
-    
-        console.log("password match: ", confirm_pass)
     }
 
     const handleSetForm = (e: any) => {
@@ -116,15 +114,10 @@ function Register() {
     }]
 
     const validateInputs = (e: React.MouseEvent) => {
-
+        e.preventDefault()
         const validations: Array<IObjectValidationsProperties> = [
             {
                 key: "user_name",
-                type: "string",
-                required: true,
-            },
-            {
-                key: "password",
                 type: "string",
                 required: true,
             },
@@ -154,11 +147,6 @@ function Register() {
                 required: true,
             },
             {
-                key: "profile_image",
-                type: "string",
-                required: false,
-            },
-            {
                 key: "isNutritionist",
                 type: "boolean",
                 required: true,
@@ -172,7 +160,7 @@ function Register() {
 
         const properties = objectValidations(form, validations);
 
-        if(properties?.passTypeValidations) handleRegister (e)
+        if(properties?.passTypeValidations) handleRegister(e)
         else{
             let errors: any;
             properties?.inputs.forEach(input => {
@@ -241,7 +229,7 @@ function Register() {
                 <fieldset>
                     <div className={styles.login_input_wrapper}>
                         <input className={styles.login_input} type={'password'} required placeholder="password" name="password" onChange={handleSetForm} value={form?.password} />
-                        {error &&  error.password && <p> {error.password}</p>}
+                        {!confirm_pass && form.password!=""? <p> "Passwords do not match"</p>:[]}
                     </div>
                     <div className={styles.login_input_wrapper}>
                         <input className={styles.login_input} required type={'password'} placeholder="confirm you password" name="confirm_pass" onChange={handleValidatePassword} />
