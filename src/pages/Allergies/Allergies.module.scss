@@ -11,8 +11,9 @@
 
 .headerWrapper {
   width: 100%;
-  height: 10%;
+  height: 15%;
 
+  flex-direction: column;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,6 +21,17 @@
   > h2 {
     font-size: 25px;
     color: var(--black-color);
+  }
+}
+
+.searchWrapper {
+  display: flex;
+  height: 20%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  > input {
+    margin: 5%;
   }
 }
 
@@ -50,7 +62,7 @@
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       justify-content: center;
 
-      .addNote {
+      .addAllergy {
         width: 250px;
         min-width: 250px;
         height: 200px;
@@ -62,6 +74,7 @@
         > svg {
           width: 30%;
           height: 30%;
+          fill: var(--green-color);
         }
 
         > span {

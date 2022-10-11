@@ -1,13 +1,13 @@
 import { PropsWithChildren } from 'react';
 import styles from './SingleAllergy.module.scss';
 
-interface ISingleNoteProps {
-  date: string;
+interface ISingleAllergyProps {
   title: string;
   content: string;
+  date: string;
 }
 
-function SingleNote(props: PropsWithChildren<ISingleNoteProps>) {
+function SingleAllergy(props: PropsWithChildren<ISingleAllergyProps>) {
   const { date, title, content } = props;
   return (
     <article className={styles.noteWrapper}>
@@ -18,4 +18,4 @@ function SingleNote(props: PropsWithChildren<ISingleNoteProps>) {
   );
 }
 
-export default SingleNote;
+export default SingleAllergy;
