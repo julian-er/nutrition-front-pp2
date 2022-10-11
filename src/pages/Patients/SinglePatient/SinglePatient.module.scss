@@ -1,5 +1,5 @@
-@import '../../stylesheets/utilities';
-@import '../../stylesheets/mixins';
+@import '../../../stylesheets/utilities';
+@import '../../../stylesheets/mixins';
 
 .header {
   position: relative;
@@ -50,9 +50,21 @@
       font-size: 30px;
     }
 
+    .infoWrapper{
+      display: flex;
+      align-items: flex-start;
+      >*{
+        margin-right: 10%;
+      }
+    }
+
     .measures {
+      width: 100%;
       span {
         font-weight: font-weight(bold);
+        >p{
+          width: 100%;
+        }
       }
     }
   }

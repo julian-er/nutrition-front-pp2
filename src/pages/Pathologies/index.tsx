@@ -1,60 +1,65 @@
-import React, { ButtonHTMLAttributes, useState } from 'react';
-import Layout from '../../components/Layout';
+import { useEffect, useState } from 'react';
 import { addIcon } from '../../shared/icons';
+import Layout from '../../components/Layout';
+import SinglePathology from './SinglePathology';
+import NewHealthModal from '../../components/shared/NewHealthModal';
 import styles from './Pathologies.module.scss';
-import SinglePathologie from './SinglePathology';
-import { testPathology } from './test-pathology';
-
+import PathologiesServices from '../../services/entityServices/PathologiesService';
 
 function Pathologies() {
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [pathologiesData, setPathologiesData]=useState([])
+  const [search, setSearch]=useState<string>("");
 
-  const changeNotesHandler = (e: React.MouseEvent<HTMLElement>, type: string) => {
-    e.preventDefault();
-    if (type === 'personal') setPathology(true)
-    else setPathology(false)
+useEffect(() => {
+  handlePathologiesData()
+}, [showModal])
+
+const handlePathologiesData = async () => {
+    const response = await PathologiesServices.getPathologiesData();
+    if (response.success) {
+      setPathologiesData(response.response);
+    } else {
+      console.error(response.message);
+    }
   }
+ 
+  const handleSetSearch=(e:any)=>{
+    setSearch(e.target.value)
+  }
+
   return (
     <Layout>
       <div className={styles.pageWrapper}>
+        {showModal? <NewHealthModal type='pathologies' title="pathology" showModal={showModal} setShowModal={setShowModal}/>  :  []}
         <header className={styles.headerWrapper}>
-          <h2>{"Patient Pathology"}</h2>
+          <h2>Pathologies</h2>
+          <div className={styles.searchWrapper}>
+            <p>Search</p>
+            <input type={'search'} onChange={handleSetSearch}/>
+          </div>
         </header>
         <div className={styles.content}>
-          <div className={styles.selectorWrapper}>
-            <button className={styles.personalPathologie } onClick={(e) => changeNotesHandler(e, 'personal')}>Pathology</button>
-          </div>
           <section className={styles.leftSide}>
             <div className={styles.notesWrapper}>
-              <button className={styles.addNote} onClick={() => console.log('create new Pathology')}>
+              <button className={styles.addNote} onClick={()=>setShowModal(true)}>
                 {addIcon}
                 <span> Add new Pathology </span>
               </button>
-              {
-                testPathology.map((note)=> <SinglePathologie {...{ ...note }} />)
+              { 
+                pathologiesData.map((pathology:any)=>pathology.name.toLowerCase().includes(search.toLowerCase())?<SinglePathology name={pathology.name} description={pathology.description}/>
+                :[])
               }
-              {
-                testPathology.map((note) => <SinglePathologie {...{ ...note }} />)
-              }
-            </div>
-          </section>
-          <section className={styles.rightSide}>
-            <div className={styles.notesWrapper}>
-              <button className={styles.addNote} onClick={() => console.log('create new Patalogy')}>
-                {addIcon}
-                <span> Add new Pathology </span>
-              </button>
-              
             </div>
           </section>
         </div>
       </div>
     </Layout>
   );
-}
+};
 
-function setPathology(arg0: boolean) {
-  throw new Error('Function not implemented.');
-}
+
+
 
 export default Pathologies;
 

@@ -11,22 +11,31 @@
 
 .headerWrapper {
     width: 100%;
-    height: 10%;
-
+    height: 15%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-
     >h2 {
         font-size: 25px;
         color: var(--black-color)
     }
 }
 
+.searchWrapper{
+    display: flex;
+    height: 20%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    >input{
+        margin: 5%;
+    }
+}
+
 .content {
     height: 90%;
     width: 100%;
-
     .selectorWrapper {
         width: 100%;
         border-bottom: 1px solid rgb(180, 177, 177);

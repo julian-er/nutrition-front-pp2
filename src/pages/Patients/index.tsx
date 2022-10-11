@@ -1,65 +1,62 @@
 import styles from './Patients.module.scss';
 import Card from '../../components/shared/CardPatient';
-import getUserLoggedData from '../../services/authServices/loggedUserService';
 import { useEffect, useState } from 'react';
-import NutritionistService , { IPatientsRequest }from '../../services/nutritionistServices/nutritionistService';
-import NewPatient from '../../components/shared/RegisterPatient';
+import NutritionistService, { IPatientsResponse } from '../../services/entityServices/NutritionistService';
+import NewPatient from '../../components/shared/NewPatientModal';
 import Layout from '../../components/Layout';
+import decryptJwt from '../../hooks/decriptJwt';
+import {  useNavigate } from 'react-router-dom';
+import { getAge } from '../../services/entityServices/PatientService';
+
 
 function Patients() {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [user, setUser]:any = useState<IPatientsRequest>({ 
-    id:0,
-    first_name:"",
-    last_name:"",
-    user_name:"",
-    profile_image:""
-  })
-
-  const getPatients= async(id:any)=>{
-    const response = await NutritionistService.getNutritionistPatients(id);
-  }
+  const [search, setSearch] = useState("")
+  const [patients, setPatients] = useState<Array<IPatientsResponse>>([])
+  const navigate = useNavigate();
+  //get all patients
+  
+  const getPatients = async () => {
+    const userInfo = decryptJwt();
+    if (!userInfo) return;
+    const response = await NutritionistService.getNutritionistPatients(userInfo.id);
+    if (response.success) {
+      setPatients(response.response)
+    } else {
+      console.error(response.message);
+    }
+  };
 
   const handlePrevent = (e:any) => {
     e.preventDefault();
     setShowModal(true)
 }
 
+ 
+  const handleSetSearch=(e:any)=>{
+    setSearch(e.target.value)
+  }
+
+//callback to the patient card component 
+const showSingularPatient=(id:number)=>{
+  navigate(`/patients/${id}`)
+}
   useEffect(() => {
-    const getUserData = async () => {
-      const userData = await getUserLoggedData();
-      setUser({
-        id:userData.id,
-        first_name:userData.first_name,
-        last_name:userData.last_name,
-        user_name:userData.user_name,
-        profile_image:userData.profile_image 
-      })
-      getPatients(userData.id);
-    }
-    getUserData();
+    getPatients();
   }, []);
   
-
   return (
     <Layout>
+    {showModal? <NewPatient showModal={showModal} setShowModal={setShowModal}/> :  []}
     <div className={styles.patients_wrapper}>
       <h1 className={styles.patients_title}>Patients</h1>
-      <input type={'search'} />
-      <Card
-        name="Adan Volken"
-        age="22"
-        paragraph="Este paciente tiene problemas al cardiacos y es alergico a la coca-colaaa"
-        profile_image="https://cdn-icons-png.flaticon.com/512/25/25634.png"
-        />
-      <Card
-        name="Hugo nuñez"
-        age="42"
-        paragraph="una cara de boludo"
-        profile_image="https://los40.com/los40/imagenes/2022/04/13/bigbang/1649847016_940843_1649847228_gigante_normal.jpg"
-      />
+      <input type={'search'} placeholder={"Search patient"} onChange={handleSetSearch}/>
+      { patients.map((patient)=> patient.first_name.toLowerCase().includes(search.toLowerCase())? 
+        <Card name={`${patient.first_name} ${patient.last_name} `} profile_image={patient.profile_image} age={getAge(patient.birth_date)} callback={()=>showSingularPatient(patient.id)}/>
+        :[])
+    }
+
       <button className={styles.patient_btn_add}  onClick={handlePrevent}>Add Patient</button>
-      {showModal? <NewPatient showModal={showModal} setShowModal={setShowModal}/> :  []}
     </div>
     </Layout>
   );

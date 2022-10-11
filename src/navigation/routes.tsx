@@ -9,7 +9,7 @@ import Pathologies from '../pages/Pathologies';
 import Patients from '../pages/Patients';
 import Profile from '../pages/Profile';
 import Register from '../pages/Register';
-import SinglePatient from '../pages/SinglePatient';
+import SinglePatient from '../pages/Patients/SinglePatient';
 import { allergiesIcon, dashboardIcon, foodIcon, notesIcon, pathologiesIcon, patientsIcon, profileIcon } from '../shared/icons';
 
 export interface IRoute {
@@ -110,13 +110,13 @@ export const routes = Object.freeze<IRoute[]>([
     url: '/profile',
     icon: profileIcon,
     showNavigation: false,
-    isPublic: false,
+    isPublic: false ,
     element: <Profile />
   },
   {
-    url: "register",
-    label: "Register",
+    url: 'register',
+    label: 'Register',
     isPublic: true,
-    element: <Register />,
+    element: <Register />
   }
 ]);

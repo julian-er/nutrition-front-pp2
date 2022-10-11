@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import RegisterService, { IRegisterRequest } from '../../services/registerServices/registerService';
 import { acceptIcon, cancelIcon, profileIcon } from '../../shared/icons';
 import Modal, { IButton } from '../../components/shared/NutModal';
+import RegisterService, { getBase64, IRegisterRequest } from '../../services/entityServices/RegisterService';
 import styles from './Register.module.scss';
 import { IObjectValidationsProperties, objectValidations } from '../../helpers';
 
@@ -26,12 +26,11 @@ function Register() {
         isPatient: false
     });
 
-    const handleRegister = async (e: React.MouseEvent) => {
-        e.preventDefault();  
+    const handleRegister = async (e:React.MouseEvent) => { 
         setShowModal(false);
+        e.preventDefault()
         setTimeout(async () => {
             try {
-                    console.log(form);
                     setLoading(true);
                     const response = await RegisterService.register(form);
                     if (response.success) {
@@ -49,18 +48,6 @@ function Register() {
         }, 2000);
     };
 
-    const getBase64 = (file: Blob) => {
-        return new Promise(resolve => {
-            let baseURL: any = "";
-            let reader = new FileReader();
-            // Convert the file to base64 text
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                baseURL = reader.result;
-                resolve(baseURL);
-            };
-        });
-    };
 
     const handleFileInputChange = (e: any) => {
         let file = e.target.files[0];
@@ -80,15 +67,14 @@ function Register() {
 
     const handleValidatePassword = (e: any) => {
         const passwordConfirm = e.target.value
-        if(passwordConfirm == form.password){
+        if(passwordConfirm === form.password && passwordConfirm!=""){
             setConfirmPass(true);
             setError("")
             }
-        else {setConfirmPass(false);
+        else {
+            setConfirmPass(false);
             setError("Passwords do not match");
             }
-    
-        console.log("password match: ", confirm_pass)
     }
 
     const handleSetForm = (e: any) => {
@@ -116,15 +102,10 @@ function Register() {
     }]
 
     const validateInputs = (e: React.MouseEvent) => {
-
+        e.preventDefault()
         const validations: Array<IObjectValidationsProperties> = [
             {
                 key: "user_name",
-                type: "string",
-                required: true,
-            },
-            {
-                key: "password",
                 type: "string",
                 required: true,
             },
@@ -154,11 +135,6 @@ function Register() {
                 required: true,
             },
             {
-                key: "profile_image",
-                type: "string",
-                required: false,
-            },
-            {
                 key: "isNutritionist",
                 type: "boolean",
                 required: true,
@@ -172,7 +148,7 @@ function Register() {
 
         const properties = objectValidations(form, validations);
 
-        if(properties?.passTypeValidations) handleRegister (e)
+        if(properties?.passTypeValidations) handleRegister(e)
         else{
             let errors: any;
             properties?.inputs.forEach(input => {
@@ -199,7 +175,7 @@ function Register() {
                 <div className={styles.login_logo}>
                     {form.profile_image !== null ?
                         (<div className={styles.image_container}>
-                            <img className={styles.user_photo} src={form.profile_image} alt="user photo" />
+                            <img className={styles.user_photo} src={form.profile_image} alt="user profile" />
                         </div>)
                         : (<>
                             {profileIcon}
@@ -241,7 +217,7 @@ function Register() {
                 <fieldset>
                     <div className={styles.login_input_wrapper}>
                         <input className={styles.login_input} type={'password'} required placeholder="password" name="password" onChange={handleSetForm} value={form?.password} />
-                        {error &&  error.password && <p> {error.password}</p>}
+                        {!confirm_pass && form.password!=""? <p> "Passwords do not match"</p>:[]}
                     </div>
                     <div className={styles.login_input_wrapper}>
                         <input className={styles.login_input} required type={'password'} placeholder="confirm you password" name="confirm_pass" onChange={handleValidatePassword} />
