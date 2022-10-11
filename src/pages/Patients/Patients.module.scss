@@ -12,3 +12,15 @@
     color: var(--black-color);
     border-bottom: 5px var(--green-color) solid;
 }
+
+.patient_btn_add{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #000000;
+    transition: color 250ms ease-in-out background-color 250ms ease-in-out;
+    border-radius: 5px;
+    &:hover {
+        color: #ffffff;
+        background-color: var(--green-color);
+    }
+}
