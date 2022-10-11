@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 import SinglePathology from './SinglePathology';
 import NewHealthModal from '../../components/shared/NewHealthModal';
 import styles from './Pathologies.module.scss';
-import PathologiesServices from '../../services/pathologiesServices/pathologiesService';
+import PathologiesServices from '../../services/entityServices/PathologiesService';
 
 function Pathologies() {
   const [showModal, setShowModal] = useState<boolean>(false);

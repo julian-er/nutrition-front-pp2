@@ -1,7 +1,7 @@
-import Layout from '../../components/Layout';
-import DayCard from '../../components/shared/DayCard';
-import NoteCard from '../../components/shared/NoteCard';
-import { noteCards, testData, testDays } from '../Dashboard/testData';
+import Layout from '../../../components/Layout';
+import DayCard from '../../../components/shared/DayCard';
+import NoteCard from '../../../components/shared/NoteCard';
+import { noteCards, testData, testDays } from '../../Dashboard/testData';
 import styles from './SinglePatient.module.scss';
 
 function SinglePatient() {
@@ -9,22 +9,19 @@ function SinglePatient() {
     <Layout>
       <header className={styles.header}>
         <div className={styles.imageWrapper}>
-          <img className={styles.profile_image} src={testData.image}></img>
+          <img className={styles.profile_image} src={testData.image} alt="profile icon"></img>
         </div>
         <div className={styles.profile_data}>
           <h2 className={styles.name}> firstname surname </h2>
           <div className={styles.measures}>
             <p>
-              {' '}
               <span> Height :</span> 1,80 mt
             </p>
             <p>
-              {' '}
-              <span> Width :</span> 78 kg{' '}
+              <span> Width :</span> 78 kg
             </p>
             <p>
-              {' '}
-              <span> Age :</span> 22{' '}
+              <span> Age :</span> 22
             </p>
           </div>
         </div>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import RegisterService, { IRegisterRequest } from '../../services/registerServices/registerService';
 import { acceptIcon, cancelIcon, profileIcon } from '../../shared/icons';
 import Modal, { IButton } from '../../components/shared/NutModal';
+import RegisterService, { IRegisterRequest } from '../../services/entityServices/RegisterService';
 import styles from './Register.module.scss';
 import { IObjectValidationsProperties, objectValidations } from '../../helpers';
 
@@ -199,7 +199,7 @@ function Register() {
                 <div className={styles.login_logo}>
                     {form.profile_image !== null ?
                         (<div className={styles.image_container}>
-                            <img className={styles.user_photo} src={form.profile_image} alt="user photo" />
+                            <img className={styles.user_photo} src={form.profile_image} alt="user profile" />
                         </div>)
                         : (<>
                             {profileIcon}

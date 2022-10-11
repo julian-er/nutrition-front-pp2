@@ -9,7 +9,7 @@ import Pathologies from '../pages/Pathologies';
 import Patients from '../pages/Patients';
 import Profile from '../pages/Profile';
 import Register from '../pages/Register';
-import SinglePatient from '../pages/SinglePatient';
+import SinglePatient from '../pages/Patients/SinglePatient';
 import { allergiesIcon, dashboardIcon, foodIcon, notesIcon, pathologiesIcon, patientsIcon, profileIcon } from '../shared/icons';
 
 export interface IRoute {

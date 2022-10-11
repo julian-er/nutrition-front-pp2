@@ -1,6 +1,6 @@
 import { MouseEventHandler, PropsWithChildren, useState  }from 'react'
 import styles from "./NewHealthModal.module.scss"
-import CreateItemService from "../../../services/itemServices/itemService"
+import CreateItemService from "../../../services/entityServices/ItemService"
 import { IObjectValidationsProperties, objectValidations } from '../../../helpers/index';
 interface INewHealthModal {
     title:string,
