@@ -1,29 +1,61 @@
+import { useState, useEffect } from 'react';
 import Layout from '../../../components/Layout';
 import DayCard from '../../../components/shared/DayCard';
 import NoteCard from '../../../components/shared/NoteCard';
 import { noteCards, testData, testDays } from '../../Dashboard/testData';
 import styles from './SinglePatient.module.scss';
+import PatientService, { getAge, ISinglePatientResponse } from '../../../services/entityServices/PatientService';
+import { useLocation } from 'react-router-dom';
+
 
 function SinglePatient() {
+  const [patientData, setPatientData]= useState<any>({});
+  const user_id:number = parseInt(useLocation().pathname.split("/")[2],10);
+  
+  const getPatientData=async()=>{
+    const response= await PatientService.getSingularPatientData(user_id);
+    if (response.success) {
+      setPatientData(response.response[0]);
+    } else {
+      console.error(response.message);
+    }
+  }
+  
+  
+  useEffect(() => {
+    getPatientData()
+  }, [])
+    
   return (
     <Layout>
       <header className={styles.header}>
         <div className={styles.imageWrapper}>
-          <img className={styles.profile_image} src={testData.image} alt="profile icon"></img>
+          <img className={styles.profile_image} src={patientData.profile_image} alt="profile icon"></img>
         </div>
         <div className={styles.profile_data}>
-          <h2 className={styles.name}> firstname surname </h2>
-          <div className={styles.measures}>
-            <p>
-              <span> Height :</span> 1,80 mt
-            </p>
-            <p>
-              <span> Width :</span> 78 kg
-            </p>
-            <p>
-              <span> Age :</span> 22
-            </p>
+          <h2 className={styles.name}> {`${patientData.first_name} ${patientData.last_name}`} </h2>
+          <div className={styles.infoWrapper}>
+            <div className={styles.measures}>
+              <p>
+                <span> Height </span> 1.79mt
+              </p>
+              <p>
+                <span> Weigth </span> 84 kg
+              </p>
+              <p>
+                <span> Age {getAge(patientData.birth_date)}</span> 
+              </p>
           </div>
+            <div className={styles.measures}>
+                <p>
+                  <span> Email </span> 1.79mt
+                </p>
+                <p>
+                  <span> Phone_number </span> 84 kg
+                </p>
+            </div>
+          </div>
+         
         </div>
       </header>
       <div className={styles.content}>

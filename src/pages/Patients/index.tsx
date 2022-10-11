@@ -5,7 +5,8 @@ import NutritionistService, { IPatientsResponse } from '../../services/entitySer
 import NewPatient from '../../components/shared/NewPatientModal';
 import Layout from '../../components/Layout';
 import decryptJwt from '../../hooks/decriptJwt';
-import { Navigate, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
+import { getAge } from '../../services/entityServices/PatientService';
 
 
 function Patients() {
@@ -13,6 +14,7 @@ function Patients() {
   const [patients, setPatients] = useState<Array<IPatientsResponse>>([])
   const navigate = useNavigate();
   //get all patients
+  
   const getPatients = async () => {
     const userInfo = decryptJwt();
     if (!userInfo) return;
@@ -30,22 +32,13 @@ function Patients() {
 }
 
 //calculates the age of a person given a date in format YYYY-MM-DD
-const getAge=(date:string):string=>  {
-    let today = new Date();
-    let birthDate = new Date(date);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    let month = today.getMonth() - birthDate.getMonth();
-    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) age=age-1;
-    return age.toString();
-}
 
 console.log(patients)
 
 //callback to the patient card component 
-const testfn=(id:number)=>{
+const showSingularPatient=(id:number)=>{
   navigate(`/patients/${id}`)
 }
-
   useEffect(() => {
     getPatients();
   }, []);
@@ -56,7 +49,7 @@ const testfn=(id:number)=>{
       <h1 className={styles.patients_title}>Patients</h1>
       <input type={'search'} />
       {patients.map((patient)=><Card name={`${patient.first_name} ${patient.last_name} `} profile_image={patient.profile_image} age={getAge(patient.birth_date)}  
-        callback={()=>testfn(patient.id)}
+        callback={()=>showSingularPatient(patient.id)}
       />)}
       <button className={styles.patient_btn_add}  onClick={handlePrevent}>Add Patient</button>
       {showModal? <NewPatient showModal={showModal} setShowModal={setShowModal}/> :  []}
