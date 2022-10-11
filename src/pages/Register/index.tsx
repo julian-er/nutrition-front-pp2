@@ -2,15 +2,20 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RegisterService, { IRegisterRequest } from '../../services/registerServices/registerService';
 import { acceptIcon, cancelIcon, profileIcon } from '../../shared/icons';
-import Modal, { IButton } from '../../shared/Modal';
+import Modal, { IButton } from '../../components/shared/NutModal';
 import styles from './Register.module.scss';
+import { IObjectValidationsProperties, objectValidations } from '../../helpers';
 
 
 function Register() {
     const [confirm_pass, setConfirmPass] = useState(false)
+    const [loading, setLoading] = useState<boolean>(false);
+    const [showModal, setShowModal] = useState<boolean>(false);
+    const navigate = useNavigate();
+    const [error, setError]= useState<any>()
     const [form, setForm] = useState<IRegisterRequest>({
         user_name: "",
-        password: '',
+        password: "",
         email: "",
         first_name: "",
         last_name: "",
@@ -21,16 +26,13 @@ function Register() {
         isPatient: false
     });
 
-    const [loading, setLoading] = useState<boolean>(false);
-    const [showModal, setShowModal] = useState<boolean>(false);
-    const navigate = useNavigate();
-
     const handleRegister = async (e: React.MouseEvent) => {
-        setLoading(true);
-        e.preventDefault();
+        e.preventDefault();  
+        setShowModal(false);
         setTimeout(async () => {
             try {
-                if (confirm_pass && form.user_name.length && form.first_name.length && form.last_name.length && form.email.length) {
+                    console.log(form);
+                    setLoading(true);
                     const response = await RegisterService.register(form);
                     if (response.success) {
                         navigate('/login');
@@ -38,24 +40,17 @@ function Register() {
                         setLoading(false);
                         console.error(response.message);
                     }
-                } else {
-                    alert("formulario incompleto")
-                }
             } catch (error) {
                 console.log('error en catch');
                 setLoading(false);
+                setError("incomplete form, please check if there are any errors")
                 console.error(error);
             }
         }, 2000);
     };
 
-    const handleBack = (e: React.MouseEvent) => {
-        navigate("/login")
-    }
-
     const getBase64 = (file: Blob) => {
         return new Promise(resolve => {
-            let fileInfo;
             let baseURL: any = "";
             let reader = new FileReader();
             // Convert the file to base64 text
@@ -85,33 +80,117 @@ function Register() {
 
     const handleValidatePassword = (e: any) => {
         const passwordConfirm = e.target.value
-        console.log(passwordConfirm)
-        passwordConfirm == form.password ? setConfirmPass(true) : setConfirmPass(false)
+        if(passwordConfirm == form.password){
+            setConfirmPass(true);
+            setError("")
+            }
+        else {setConfirmPass(false);
+            setError("Passwords do not match");
+            }
+    
+        console.log("password match: ", confirm_pass)
     }
 
     const handleSetForm = (e: any) => {
         const { name, value } = e.target;
-        console.log(confirm_pass)
         setForm({
             ...form,
             [name]: value
         });
     };
 
+    const handlePrevent = (e:any) => {
+        e.preventDefault();
+        setShowModal(true)
+    }
+
     const buttons: Array<IButton> = [{
         label: 'accept',
         icon: acceptIcon,
-        callback: () => setShowModal(false)
+        callback: handleRegister
     },
     {
         label: 'decline',
         icon: cancelIcon,
-        callback: () => setShowModal(false)
+        callback: (e: React.MouseEvent) => setShowModal(false)
     }]
 
-    const handlePrevent = (e:any) => {
-        e.preventDefault();
-        setShowModal(true)
+    const validateInputs = (e: React.MouseEvent) => {
+
+        const validations: Array<IObjectValidationsProperties> = [
+            {
+                key: "user_name",
+                type: "string",
+                required: true,
+            },
+            {
+                key: "password",
+                type: "string",
+                required: true,
+            },
+            {
+                key: "email",
+                type: "string",
+                required: true,
+            },
+            {
+                key: "first_name",
+                type: "string",
+                required: true,
+            },
+            {
+                key: "last_name",
+                type: "string",
+                required: true,
+            },
+            {
+                key: "birth_date",
+                type: "string",
+                required: true,
+            },
+            {
+                key: "phone_number",
+                type: "string",
+                required: true,
+            },
+            {
+                key: "profile_image",
+                type: "string",
+                required: false,
+            },
+            {
+                key: "isNutritionist",
+                type: "boolean",
+                required: true,
+            },
+            {
+                key: "isPatient",
+                type: "boolean",
+                required: true,
+            },
+        ];
+
+        const properties = objectValidations(form, validations);
+
+        if(properties?.passTypeValidations) handleRegister (e)
+        else{
+            let errors: any;
+            properties?.inputs.forEach(input => {
+                let key = input.key;
+                let required = input.has;
+                let valid = input.typeValid;
+                let message;
+                if (required && valid) return;
+                if (!required && !valid) message = "This field is required, please provide a value";
+                if (required && !valid) message = `This is not a accepted value`;
+                errors = {
+                    ...errors,
+                    [key]: message,
+                };
+            });
+            setError(errors)
+        }
+
     }
 
     return (
@@ -131,46 +210,54 @@ function Register() {
                 <h2> Register </h2>
                 <fieldset>
                     <div className={styles.login_input_wrapper}>
-                        <input className={styles.login_input} id="id" type={'text'} placeholder="name" name="first_name" onChange={handleSetForm} value={form?.first_name} />
+                        <input className={styles.login_input} type={'text'} required placeholder="name" name="first_name" onChange={handleSetForm} value={form?.first_name} />
+                        {error &&  error.first_name && <p> {error.first_name}</p>}
                     </div>
                     <div className={styles.login_input_wrapper}>
-                        <input className={styles.login_input} id="id" type={'text'} placeholder="last name" name="last_name" onChange={handleSetForm} value={form?.last_name} />
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <div className={styles.login_input_wrapper}>
-                        <input className={styles.login_input} id="id" type={'text'} placeholder="email" name="email" onChange={handleSetForm} value={form?.email} />
-                    </div>
-                    <div className={styles.login_input_wrapper}>
-                        <input className={styles.login_input} id="id" type={'text'} placeholder="phone number" name="phone_number" onChange={handleSetForm} value={form?.phone_number} />
+                        <input className={styles.login_input} required type={'text'} placeholder="last name" name="last_name" onChange={handleSetForm} value={form?.last_name} />
+                        {error &&  error.last_name && <p> {error.last_name}</p>}
                     </div>
                 </fieldset>
                 <fieldset>
                     <div className={styles.login_input_wrapper}>
-                        <input className={styles.login_input} id="id" type={'text'} placeholder="username" name="user_name" onChange={handleSetForm} value={form?.user_name} />
+                        <input className={styles.login_input} required type={'text'} placeholder="email" name="email" onChange={handleSetForm} value={form?.email} />
+                        {error &&  error.email && <p> {error.email}</p>}
                     </div>
                     <div className={styles.login_input_wrapper}>
-                        <input className={`${styles.login_btn_login}  ${styles.date_selector}`} id="id" type={'date'} placeholder="birth date" name="birth_date" onChange={handleSetForm} value={form?.birth_date} />
+                        <input className={styles.login_input} required type={'text'} placeholder="phone number" name="phone_number" onChange={handleSetForm} value={form?.phone_number} />
+                        {error &&  error.phone_number && <p> {error.phone_number}</p>}
                     </div>
                 </fieldset>
                 <fieldset>
                     <div className={styles.login_input_wrapper}>
-                        <input className={styles.login_input} type={'password'} placeholder="password" name="password" onChange={handleSetForm} value={form?.password} />
+                        <input className={styles.login_input} required type={'text'} placeholder="username" name="user_name" onChange={handleSetForm} value={form?.user_name} />
+                        {error &&  error.user_name && <p> {error.user_name}</p>}
                     </div>
                     <div className={styles.login_input_wrapper}>
-                        <input className={styles.login_input} id="id" type={'password'} placeholder="confirm you password" name="confirm_pass" onChange={handleValidatePassword} />
+                        <input className={`${styles.login_btn_login}  ${styles.date_selector}`} required type={'date'} placeholder="birth date" name="birth_date" onChange={handleSetForm} value={form?.birth_date} />
+                        {error &&  error.birth_date && <p> {error.birth_date}</p>}
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className={styles.login_input_wrapper}>
+                        <input className={styles.login_input} type={'password'} required placeholder="password" name="password" onChange={handleSetForm} value={form?.password} />
+                        {error &&  error.password && <p> {error.password}</p>}
+                    </div>
+                    <div className={styles.login_input_wrapper}>
+                        <input className={styles.login_input} required type={'password'} placeholder="confirm you password" name="confirm_pass" onChange={handleValidatePassword} />
+                        {!confirm_pass && form.password!=""? <p> "Passwords do not match"</p>:[]}
                     </div>
                 </fieldset>
                 <section>
-                    <button className={styles.login_btn_login} onClick={handleBack}>
+                    <button className={styles.login_btn_login} onClick={()=> navigate(-1)}>
                         Back
                     </button>
-                    <button className={`${styles.login_btn_login}  ${styles.login_btn_register}`} onClick={handlePrevent}>
+                    <button className={`${styles.login_btn_login}  ${styles.login_btn_register}`} onClick={validateInputs}>
                         Register
                     </button>
                 </section>
             </form>
-            {showModal ? <Modal title='Confirmar Registro' paragraph='algo para el cuerpo' buttons={buttons} /> : []}
+            {showModal ? <Modal title='Confirm register?' paragraph={error} buttons={buttons} /> : []}
         </div>
     );
 }

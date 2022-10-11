@@ -1,0 +1,32 @@
+.card_wrapper{
+    display: flex;
+    text-align: left;
+    align-items: center;
+    background-color: var(--module-card-background);
+    width: 40%;
+    padding: 0px 10px;
+    margin: 20px;
+    border-radius: 10px;
+
+    .patient_info{
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        color: var(--black-color);
+        padding: 0 15px;
+        max-width: 80%;
+        >p{
+            max-width: 90%;
+        }
+    }
+
+    .patient_image{
+        margin-right: 10px;
+        min-width: 60px;
+        max-width: 15%;
+        height: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+}
+

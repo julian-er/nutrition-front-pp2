@@ -1,15 +1,15 @@
-import { PropsWithChildren } from "react"
-import styles from "./DayCard.module.scss"
+import { PropsWithChildren } from 'react';
+import styles from './DayCard.module.scss';
 
 interface IDayCard {
-  title: string,
-  totalDishes: number,
-  patientName: string,
-  patientImage: string,
-  id: number
+  title: string;
+  totalDishes: number;
+  patientName: string;
+  patientImage: string;
+  id: number;
 }
 function DayCard(props: PropsWithChildren<IDayCard>) {
-  const { title, totalDishes, patientName, patientImage, id } = props
+  const { title, totalDishes, patientName, patientImage, id } = props;
   return (
     <div className={styles.wrapper} onClick={() => console.log(id)}>
       <div className={styles.info}>
@@ -18,12 +18,12 @@ function DayCard(props: PropsWithChildren<IDayCard>) {
       </div>
       <div className={styles.profile}>
         <div className={styles.imageWrapper}>
-          <img src={patientImage} alt='user-profile'/>
+          <img src={patientImage} alt="user-profile" />
         </div>
         <p>{patientName}</p>
       </div>
     </div>
-  )
+  );
 }
 
-export default DayCard
+export default DayCard;

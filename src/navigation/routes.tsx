@@ -63,6 +63,7 @@ export const routes = Object.freeze<IRoute[]>([
     isPublic: false,
     element: <Notes />
   },
+
   {
     url: '/food',
     label: 'Food',

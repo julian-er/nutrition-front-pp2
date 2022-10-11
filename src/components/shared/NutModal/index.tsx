@@ -10,12 +10,12 @@ export interface IModal {
 export interface IButton {
   label: string,
   icon: JSX.Element,
-  callback: () => void,
+  callback: (e:React.MouseEvent) => void,
 }
 
 
 
-function Modal(props: PropsWithChildren<IModal>) {
+const Modal=(props: PropsWithChildren<IModal>)=> {
   const { title, paragraph, buttons } = props
   return (
     <div className={styles.backdrop}>
