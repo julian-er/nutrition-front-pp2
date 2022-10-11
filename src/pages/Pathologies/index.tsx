@@ -1,4 +1,4 @@
-import { ReactEventHandler, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { addIcon } from '../../shared/icons';
 import Layout from '../../components/Layout';
 import SinglePathology from './SinglePathology';
