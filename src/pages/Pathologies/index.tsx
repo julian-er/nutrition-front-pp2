@@ -1,17 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { addIcon } from '../../shared/icons';
 import { testPathology } from './test-pathology';
 import Layout from '../../components/Layout';
 import SinglePathology from './SinglePathology';
 import NewHealthModal from '../../components/shared/NewHealthModal';
 import styles from './Pathologies.module.scss';
+import PathologiesServices from '../../services/pathologiesServices/pathologiesService';
 
 function Pathologies() {
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [pathologiesData, setPathologiesData]=useState([])
   const [form, setForm] = useState({
     name: "",
     description:""
 });
+
+useEffect(() => {
+  handlePathologiesData()
+}, [pathologiesData])
+
+const handlePathologiesData = async () => {
+    const response = await PathologiesServices.getPathologiesData();
+    if (response.success) {
+      setPathologiesData(response.response);
+    } else {
+      console.error(response.message);
+    }
+  }
 
   return (
     <Layout>
@@ -32,10 +47,7 @@ function Pathologies() {
                 <span> Add new Pathology </span>
               </button>
               {
-                testPathology.map((note)=> <SinglePathology {...{ ...note }} />)
-              }
-              {
-                testPathology.map((note) => <SinglePathology {...{ ...note }} />)
+                 pathologiesData.map((pathology:any ) => <SinglePathology name={pathology.name} description={pathology.description}/>)
               }
             </div>
           </section>
@@ -43,7 +55,10 @@ function Pathologies() {
       </div>
     </Layout>
   );
-}  
+};
+
+
+
 
 export default Pathologies;
 
