@@ -8,58 +8,53 @@ import PathologiesServices from '../../services/entityServices/PathologiesServic
 
 function Pathologies() {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [pathologiesData, setPathologiesData]=useState([])
-  const [search, setSearch]=useState<string>("");
+  const [pathologiesData, setPathologiesData] = useState([]);
+  const [search, setSearch] = useState<string>('');
 
-useEffect(() => {
-  handlePathologiesData()
-}, [showModal])
+  useEffect(() => {
+    handlePathologiesData();
+  }, [showModal]);
 
-const handlePathologiesData = async () => {
+  const handlePathologiesData = async () => {
     const response = await PathologiesServices.getPathologiesData();
     if (response.success) {
       setPathologiesData(response.response);
     } else {
       console.error(response.message);
     }
-  }
- 
-  const handleSetSearch=(e:any)=>{
-    setSearch(e.target.value)
-  }
+  };
+
+  const handleSetSearch = (e: any) => {
+    setSearch(e.target.value);
+  };
 
   return (
     <Layout>
       <div className={styles.pageWrapper}>
-        {showModal? <NewHealthModal type='pathologies' title="pathology" showModal={showModal} setShowModal={setShowModal}/>  :  []}
         <header className={styles.headerWrapper}>
           <h2>Pathologies</h2>
           <div className={styles.searchWrapper}>
             <p>Search</p>
-            <input type={'search'} onChange={handleSetSearch}/>
+            <input type={'search'} onChange={handleSetSearch} />
           </div>
         </header>
         <div className={styles.content}>
           <section className={styles.leftSide}>
             <div className={styles.notesWrapper}>
-              <button className={styles.addNote} onClick={()=>setShowModal(true)}>
+              <button className={styles.addNote} onClick={() => setShowModal(true)}>
                 {addIcon}
                 <span> Add new Pathology </span>
               </button>
-              { 
-                pathologiesData.map((pathology:any)=>pathology.name.toLowerCase().includes(search.toLowerCase())?<SinglePathology name={pathology.name} description={pathology.description}/>
-                :[])
-              }
+              {pathologiesData.map((pathology: any) =>
+                pathology.name.toLowerCase().includes(search.toLowerCase()) ? <SinglePathology name={pathology.name} description={pathology.description} /> : []
+              )}
             </div>
           </section>
         </div>
       </div>
+      {showModal ? <NewHealthModal type="pathologies" title="pathology" showModal={showModal} setShowModal={setShowModal} /> : []}
     </Layout>
   );
-};
-
-
-
+}
 
 export default Pathologies;
-

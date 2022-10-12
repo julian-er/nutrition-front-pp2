@@ -31,7 +31,6 @@ function Allergies() {
   return (
     <Layout>
       <div className={styles.pageWrapper}>
-        {showModal ? <NewHealthModal type="allergies" title="allergy" showModal={showModal} setShowModal={setShowModal} /> : []}
         <header className={styles.headerWrapper}>
           <h2>Allergies</h2>
           <div className={styles.searchWrapper}>
@@ -53,6 +52,7 @@ function Allergies() {
           </section>
         </div>
       </div>
+      {showModal ? <NewHealthModal type="allergies" title="allergy" showModal={showModal} setShowModal={setShowModal} /> : []}
     </Layout>
   );
 }

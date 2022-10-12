@@ -56,7 +56,6 @@ function Patients() {
 
   return (
     <Layout>
-      {showModal ? <NewPatient setShowModal={() => setShowModal(!showModal)} nutritionist_id={loggedUser ? loggedUser?.id : 0} /> : []}
       <div className={styles.patients_wrapper}>
         <h1 className={styles.patients_title}>Patients</h1>
         <input type={'search'} placeholder={'Search patient'} onChange={handleSetSearch} />
@@ -76,6 +75,8 @@ function Patients() {
           Add Patient
         </button>
       </div>
+      {showModal ? <NewPatient setShowModal={() => setShowModal(!showModal)} nutritionist_id={loggedUser ? loggedUser?.id : 0} /> : []}
+
     </Layout>
   );
 }
