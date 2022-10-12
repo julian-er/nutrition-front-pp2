@@ -24,14 +24,21 @@
   }
 }
 
-.searchWrapper {
-  display: flex;
-  height: 20%;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  > input {
-    margin: 5%;
+.searchWrapper_input {
+  border: none;
+  border-bottom: 2px solid var(--green-color);
+  color: var(--green-color);
+  background: none;
+  transition: border-color 250ms ease-in-out;
+
+  &::placeholder {
+    text-transform: uppercase;
+    color: var(--grey-asideMenu-color);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #8ad2d5;
   }
 }
 
