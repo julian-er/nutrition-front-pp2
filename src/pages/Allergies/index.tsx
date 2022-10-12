@@ -35,8 +35,7 @@ function Allergies() {
         <header className={styles.headerWrapper}>
           <h2>Allergies</h2>
           <div className={styles.searchWrapper}>
-            <p>Search</p>
-            <input type={'search'} onChange={handleSetSearch} />
+            <input className={styles.searchWrapper_input} type={'search'} placeholder="search" onChange={handleSetSearch} />
           </div>
         </header>
         <div className={styles.content}>
