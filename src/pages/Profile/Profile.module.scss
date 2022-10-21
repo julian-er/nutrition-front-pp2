@@ -1,0 +1,120 @@
+@import '../../stylesheets/animations';
+@import '../../stylesheets/variables/media-queries';
+
+
+.login_full{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(137, 138, 138, 0.2);
+
+}
+
+.login_form {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+
+.file_input{
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    opacity: 0;
+    z-index: 1;
+}
+
+section {
+    display: flex;
+    margin: 20px;
+}
+
+.login_input_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    margin: 30px;
+    text-align: center;
+    >p{
+        color:var(--red-color)
+    }
+}
+
+.login_input {
+
+    border: none;
+    border-bottom: 2px solid #ffffff;
+    color: #ffffff;
+    background: none;
+    transition: border-color 250ms ease-in-out;
+    width: 100%;
+    &::placeholder {
+        text-transform: uppercase;
+        color: #ffffff;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: #8ad2d5;
+    }
+}
+
+h2{
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+fieldset {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 15%;
+    >.login_input_wrapper>.date_selector{
+        width: 100%;
+        border: none;
+        margin: 0;
+        padding: 0;
+        border-bottom: 2px solid #ffffff;
+        color: #ffffff;
+        text-align: left;
+    }
+
+}
+.login_btn_login {
+    cursor: pointer;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0 15px;
+    min-height: 37px;
+    margin: 20px;
+    background-color: transparent;
+    transition: background-color 250ms ease-in-out;
+    width: 200px;
+
+    &:hover {
+        background-color: #8ad2d5;
+    }
+}
+
+
+.login_btn_login{
+    animation: appear_bottom 500ms ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+
+
+
+
