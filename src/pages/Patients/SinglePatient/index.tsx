@@ -2,31 +2,29 @@ import { useState, useEffect } from 'react';
 import Layout from '../../../components/Layout';
 import DayCard from '../../../components/shared/DayCard';
 import NoteCard from '../../../components/shared/NoteCard';
-import { noteCards, testData, testDays } from '../../Dashboard/testData';
+import { noteCards, testDays } from '../../Dashboard/testData';
 import styles from './SinglePatient.module.scss';
 import PatientService, { getAge, ISinglePatientResponse } from '../../../services/entityServices/PatientService';
 import { useLocation } from 'react-router-dom';
 
-
 function SinglePatient() {
-  const [patientData, setPatientData]= useState<any>({});
-  const user_id:number = parseInt(useLocation().pathname.split("/")[2],10);
-  
-  const getPatientData=async()=>{
-    const response= await PatientService.getSingularPatientData(user_id);
-    if (response.success) {
-      setPatientData(response.response[0]);
-    } else {
-      console.error(response.message);
-    }
-  }
-  
-  
-  console.log(patientData)
+  const [patientData, setPatientData] = useState<any | ISinglePatientResponse>({});
+  const user_id: number = parseInt(useLocation().pathname.split('/')[2], 10);
+
   useEffect(() => {
-    getPatientData()
-  }, [])
     
+    const getPatientData = async () => {
+      const response = await PatientService.getSingularPatientData(user_id);
+      if (response.success) {
+        setPatientData(response.response[0]);
+      } else {
+        console.error(response.message);
+      }
+    };
+
+    getPatientData();
+  }, [user_id]);
+
   return (
     <Layout>
       <header className={styles.header}>
@@ -44,19 +42,18 @@ function SinglePatient() {
                 <span> Weigth </span> 84 kg
               </p>
               <p>
-                <span> Age {getAge(patientData.birth_date)}</span> 
+                <span> Age {getAge(patientData.birth_date)}</span>
               </p>
-          </div>
+            </div>
             <div className={styles.measures}>
-                <p>
-                  <span> Email </span> {patientData.email}
-                </p>
-                <p>
-                  <span> Phone Number </span> {patientData.phone_number}
-                </p>
+              <p>
+                <span> Email </span> {patientData.email}
+              </p>
+              <p>
+                <span> Phone Number </span> {patientData.phone_number}
+              </p>
             </div>
           </div>
-         
         </div>
       </header>
       <div className={styles.content}>
