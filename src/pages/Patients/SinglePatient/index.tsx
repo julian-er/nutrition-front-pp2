@@ -22,6 +22,7 @@ function SinglePatient() {
   }
   
   
+  console.log(patientData)
   useEffect(() => {
     getPatientData()
   }, [])
@@ -48,10 +49,10 @@ function SinglePatient() {
           </div>
             <div className={styles.measures}>
                 <p>
-                  <span> Email </span> test-email@gmail.com
+                  <span> Email </span> {patientData.email}
                 </p>
                 <p>
-                  <span> Phone Number </span> 341-3545670
+                  <span> Phone Number </span> {patientData.phone_number}
                 </p>
             </div>
           </div>
