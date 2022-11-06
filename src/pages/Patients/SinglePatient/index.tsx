@@ -48,10 +48,10 @@ function SinglePatient() {
           </div>
             <div className={styles.measures}>
                 <p>
-                  <span> Email </span> 1.79mt
+                  <span> Email </span> test-email@gmail.com
                 </p>
                 <p>
-                  <span> Phone_number </span> 84 kg
+                  <span> Phone Number </span> 341-3545670
                 </p>
             </div>
           </div>

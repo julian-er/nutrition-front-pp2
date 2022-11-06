@@ -34,8 +34,7 @@ function Pathologies() {
         <header className={styles.headerWrapper}>
           <h2>Pathologies</h2>
           <div className={styles.searchWrapper}>
-            <p>Search</p>
-            <input type={'search'} onChange={handleSetSearch} />
+            <input className={styles.searchWrapper_input} type={'search'} onChange={handleSetSearch} placeholder="search" />
           </div>
         </header>
         <div className={styles.content}>

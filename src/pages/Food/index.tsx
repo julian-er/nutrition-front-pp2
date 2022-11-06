@@ -1,10 +1,10 @@
-import React from 'react';
 import Layout from '../../components/Layout';
+import styles from './Food.module.scss';
 
 function Food() {
   return (
     <Layout>
-      <div>New food</div>
+      <div className={styles.wrapper}> Sorry this feature is in development, come back later! </div>
     </Layout>
   );
 }
